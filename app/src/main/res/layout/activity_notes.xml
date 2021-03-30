@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NotesActivity"
+    android:id="@+id/rlNotes"
+    >
+
+    <TextView
+        android:id="@+id/choose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/rlYears"
+        android:layout_marginVertical="20dp"
+        android:fontFamily="@font/amarante"
+        android:text="Chose your year of study"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+<RelativeLayout
+    android:id="@+id/rlYears"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true">
+
+    <Button
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="1st year"
+        android:id="@+id/btn1stYr"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="2nd year"
+        android:id="@+id/btn2nd"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn1stYr" />
+
+    <Button
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="3rd year"
+        android:id="@+id/btn3rd"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn2nd" />
+
+    <Button
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="4th year"
+        android:id="@+id/btn4th"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn3rd" />
+
+    <Button
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="5th year"
+        android:id="@+id/btn5th"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn4th" />
+
+    <Button
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="6th year"
+        android:id="@+id/btn6th"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn5th" />
+
+</RelativeLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:background="@drawable/et_style"
+        android:id="@+id/llBranch"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:id="@+id/imgCancel"
+            android:src="@drawable/ic_baseline_cancel_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"/>
+        <TextView
+            android:background="@drawable/et_style"
+            android:padding="6dp"
+            android:id="@+id/yearName"
+            android:text="1st"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:padding="5dp"
+            android:background="@drawable/txtstyle"
+            android:layout_margin="5dp"
+            android:id="@+id/ae"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/agriculture"/>
+        <TextView
+            android:padding="6dp"
+            android:background="@drawable/txtstyle"
+            android:layout_margin="5dp"
+            android:id="@+id/ce"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/civil"/>
+        <TextView
+            android:padding="6dp"
+            android:background="@drawable/txtstyle"
+            android:layout_margin="5dp"
+            android:id="@+id/cse"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/computer_science"/>
+        <TextView
+            android:padding="6dp"
+            android:background="@drawable/txtstyle"
+            android:layout_margin="5dp"
+            android:id="@+id/ee"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/electrical"/>
+        <TextView
+            android:padding="6dp"
+            android:background="@drawable/txtstyle"
+            android:layout_margin="5dp"
+            android:id="@+id/ece"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/electronics"/>
+        <TextView
+            android:padding="6dp"
+            android:background="@drawable/txtstyle"
+            android:layout_margin="5dp"
+            android:id="@+id/me"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mechanical"/>
+        <TextView
+            android:padding="6dp"
+            android:background="@drawable/txtstyle"
+            android:layout_margin="5dp"
+            android:id="@+id/fo"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forestry"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

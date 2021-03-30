@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_margin="5dp"
+        android:id="@+id/ae"
+        android:layout_gravity="center_horizontal" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/agriculture"/>
+    <TextView
+        android:layout_margin="5dp"
+        android:id="@+id/ce"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/civil"/>
+    <TextView
+        android:layout_margin="5dp"
+        android:id="@+id/cse"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/computer_science"/>
+    <TextView
+        android:layout_margin="5dp"
+        android:id="@+id/ee"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/electrical"/>
+    <TextView
+        android:layout_margin="5dp"
+        android:id="@+id/ece"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/electronics"/>
+    <TextView
+        android:layout_margin="5dp"
+        android:id="@+id/me"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mechanical"/>
+    <TextView
+        android:layout_margin="5dp"
+        android:id="@+id/fo"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forestry"/>
+</LinearLayout>

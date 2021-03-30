@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Nerist Buddy</string>
     <string name="my_nerist_buddy_app">My Nerist Buddy App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="agriculture">Agriculture</string>
+    <string name="civil">Civil</string>
+    <string name="computer_science">Computer Science</string>
+    <string name="electronics">Electronics</string>
+    <string name="mechanical">Mechanical</string>
+    <string name="forestry">Forestry</string>
+    <string name="electrical">Electrical</string>
+    <string name="saved_preferences">savedPreferences</string>
 </resources>
