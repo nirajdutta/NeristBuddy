@@ -1,9 +1,10 @@
-package com.diplomaproject.neristbuddy
+package com.diplomaproject.neristbuddy.activities
 
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.diplomaproject.neristbuddy.R
 
 class NotesActivity : AppCompatActivity() {
     lateinit var btn1st: Button

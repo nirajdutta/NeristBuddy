@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "822745464521",
+    "project_id": "my-nerist-buddy",
+    "storage_bucket": "my-nerist-buddy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822745464521:android:c63841d52a0faee8c2d718",
+        "android_client_info": {
+          "package_name": "com.diplomaproject.neristbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822745464521-g9nieprkgc9m9902lrp59dhpfaco2lo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF2SqdaI6Ag5ZnEVyEUAv4wq1EPpvR7QA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822745464521-g9nieprkgc9m9902lrp59dhpfaco2lo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

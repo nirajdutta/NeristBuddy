@@ -11,4 +11,6 @@
     <string name="forestry">Forestry</string>
     <string name="electrical">Electrical</string>
     <string name="saved_preferences">savedPreferences</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
 </resources>
