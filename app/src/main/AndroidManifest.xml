@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.NeristBuddy">
-        <activity android:name=".activities.SplashActivity"
+        <activity android:name=".activities.ViewNotesActivity"></activity>
+        <activity
+            android:name=".activities.SplashActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,14 +21,13 @@
         </activity>
         <activity
             android:name=".activities.NotesActivity"
-            android:parentActivityName=".activities" />
-        <activity android:name=".activities.MainActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".activities.LoginActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

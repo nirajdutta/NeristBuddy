@@ -3,12 +3,18 @@
 <group
     android:checkableBehavior="single">
     <item
+        android:id="@+id/homepage"
+        android:title="Home"/>
+    <item
         android:id="@+id/profile"
         android:title="Profile"/>
 
     <item
         android:id="@+id/contact"
         android:title="Contact us"/>
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"/>
     <item
         android:id="@+id/logout"
         android:title="Log out"

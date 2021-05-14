@@ -122,6 +122,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="@string/agriculture"/>
         <TextView
             android:padding="6dp"
@@ -131,6 +132,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="@string/civil"/>
         <TextView
             android:padding="6dp"
@@ -140,6 +142,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="@string/computer_science"/>
         <TextView
             android:padding="6dp"
@@ -149,6 +152,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="@string/electrical"/>
         <TextView
             android:padding="6dp"
@@ -158,6 +162,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="@string/electronics"/>
         <TextView
             android:padding="6dp"
@@ -167,6 +172,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="@string/mechanical"/>
         <TextView
             android:padding="6dp"
@@ -176,6 +182,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="@string/forestry"/>
     </LinearLayout>
 

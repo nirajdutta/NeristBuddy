@@ -41,110 +41,15 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/frameLayout"
-                android:layout_width="fill_parent"
-                android:weightSum="3"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <Button
-                        android:background="@color/purple_500"
-                        android:id="@+id/btnNotes"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:text="Notes"
-                        android:textAllCaps="false"
-                        tools:ignore="NestedWeights" />
-
-                    <Button
-                        android:background="@color/purple_500"
-                        android:id="@+id/btnDoubts"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:text="Doubts"
-                        android:textAllCaps="false" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    <Button
-                        android:background="@color/purple_500"
-                        android:id="@+id/btnTnp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:layout_weight="0.5"
-                        android:text="T &amp; P"
-
-                        />
-
-                    <Button
-                        android:background="@color/purple_500"
-                        android:id="@+id/btnLost"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:layout_weight="0.5"
-                        android:text="Lost and Found"
-
-                        android:textAllCaps="false" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <Button
-                        android:id="@+id/btnEvents"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@color/purple_500"
-                        android:text="Events"
-                        android:textAllCaps="false"
-                        tools:ignore="NestedWeights" />
-
-                    <Button
-                        android:id="@+id/btnCCA"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@color/purple_500"
-                        android:text="Co-Curricular Activities"
-                        android:textAllCaps="false" />
-                </LinearLayout>
-
-            </LinearLayout>
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
-
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -48,6 +48,7 @@ class LoginActivity : AppCompatActivity() {
 
         btnlogin.setOnClickListener {
             rlProgress.visibility=View.VISIBLE
+            llLogin.visibility=View.GONE
             if (isValidInput()){
                 auth.signInWithEmailAndPassword(etId.text.toString(),etPassword.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful){
@@ -62,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     else{
                         rlProgress.visibility=View.GONE
+                        llLogin.visibility=View.VISIBLE
                         Toast.makeText(this,"Authentication Failed",Toast.LENGTH_SHORT).show()
                         val msg=it.exception.toString()
                         println("error:  $msg")
@@ -90,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
 
         }
         rlProgress.visibility=View.GONE
-
+        llLogin.visibility=View.VISIBLE
     }
     private fun hideKeyBoard(){
         val view=this.currentFocus

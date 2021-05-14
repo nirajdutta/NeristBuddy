@@ -1,5 +1,6 @@
 package com.diplomaproject.neristbuddy.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -20,10 +21,18 @@ class NotesActivity : AppCompatActivity() {
     lateinit var imgCancel: ImageView
     lateinit var choose: TextView
 
+    lateinit var txtCse: TextView
+    lateinit var txtAe: TextView
+    lateinit var txtEce: TextView
+    lateinit var txtEe: TextView
+    lateinit var txtCe: TextView
+    lateinit var txtMe: TextView
+    lateinit var txtFo: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes)
-        title="Notes"
+        title = "Notes"
 
         llBranch = findViewById(R.id.llBranch)
         llBranch.visibility = View.GONE
@@ -42,12 +51,18 @@ class NotesActivity : AppCompatActivity() {
         imgCancel = findViewById(R.id.imgCancel)
         yearName = findViewById(R.id.yearName)
 
-
+        txtAe = findViewById(R.id.ae)
+        txtCe = findViewById(R.id.ce)
+        txtCse = findViewById(R.id.cse)
+        txtEce = findViewById(R.id.ece)
+        txtEe = findViewById(R.id.ee)
+        txtMe = findViewById(R.id.me)
+        txtFo = findViewById(R.id.fo)
 
 
         btn1st.setOnClickListener {
 
-            choose.text="Choose your Department"
+            choose.text = "Choose your Department"
             rlYears.isEnabled = false
             rlYears.visibility = View.GONE
             llBranch.visibility = View.VISIBLE
@@ -56,9 +71,51 @@ class NotesActivity : AppCompatActivity() {
                 llBranch.visibility = View.GONE
                 llBranch.isEnabled = false
                 rlYears.visibility = View.VISIBLE
-                choose.text="Choose your year of study"
+                choose.text = "Choose your year of study"
             }
 
+            txtAe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "1")
+                intent.putExtra("branch", "ae")
+                startActivity(intent)
+            }
+            txtCe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "1")
+                intent.putExtra("branch", "ce")
+                startActivity(intent)
+            }
+            txtCse.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "1")
+                intent.putExtra("branch", "cse")
+                startActivity(intent)
+            }
+            txtEce.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "1")
+                intent.putExtra("branch", "ece")
+                startActivity(intent)
+            }
+            txtEe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "1")
+                intent.putExtra("branch", "ee")
+                startActivity(intent)
+            }
+            txtMe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "1")
+                intent.putExtra("branch", "me")
+                startActivity(intent)
+            }
+            txtFo.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "1")
+                intent.putExtra("branch", "fo")
+                startActivity(intent)
+            }
         }
         btn2nd.setOnClickListener {
 
@@ -71,7 +128,50 @@ class NotesActivity : AppCompatActivity() {
                 llBranch.visibility = View.GONE
                 llBranch.isEnabled = false
                 rlYears.visibility = View.VISIBLE
-                choose.text="Choose your year of study"
+                choose.text = "Choose your year of study"
+            }
+
+            txtAe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "2")
+                intent.putExtra("branch", "ae")
+                startActivity(intent)
+            }
+            txtCe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "2")
+                intent.putExtra("branch", "ce")
+                startActivity(intent)
+            }
+            txtCse.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "2")
+                intent.putExtra("branch", "cse")
+                startActivity(intent)
+            }
+            txtEce.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "2")
+                intent.putExtra("branch", "ece")
+                startActivity(intent)
+            }
+            txtEe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "2")
+                intent.putExtra("branch", "ee")
+                startActivity(intent)
+            }
+            txtMe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "2")
+                intent.putExtra("branch", "me")
+                startActivity(intent)
+            }
+            txtFo.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "2")
+                intent.putExtra("branch", "fo")
+                startActivity(intent)
             }
 
         }
@@ -86,9 +186,51 @@ class NotesActivity : AppCompatActivity() {
                 llBranch.visibility = View.GONE
                 llBranch.isEnabled = false
                 rlYears.visibility = View.VISIBLE
-                choose.text="Choose your year of study"
+                choose.text = "Choose your year of study"
             }
 
+            txtAe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "3")
+                intent.putExtra("branch", "ae")
+                startActivity(intent)
+            }
+            txtCe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "3")
+                intent.putExtra("branch", "ce")
+                startActivity(intent)
+            }
+            txtCse.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "3")
+                intent.putExtra("branch", "cse")
+                startActivity(intent)
+            }
+            txtEce.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "3")
+                intent.putExtra("branch", "ece")
+                startActivity(intent)
+            }
+            txtEe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "3")
+                intent.putExtra("branch", "ee")
+                startActivity(intent)
+            }
+            txtMe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "3")
+                intent.putExtra("branch", "me")
+                startActivity(intent)
+            }
+            txtFo.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "3")
+                intent.putExtra("branch", "fo")
+                startActivity(intent)
+            }
         }
         btn4th.setOnClickListener {
 
@@ -101,9 +243,51 @@ class NotesActivity : AppCompatActivity() {
                 llBranch.visibility = View.GONE
                 llBranch.isEnabled = false
                 rlYears.visibility = View.VISIBLE
-                choose.text="Choose your year of study"
+                choose.text = "Choose your year of study"
             }
 
+            txtAe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "4")
+                intent.putExtra("branch", "ae")
+                startActivity(intent)
+            }
+            txtCe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "4")
+                intent.putExtra("branch", "ce")
+                startActivity(intent)
+            }
+            txtCse.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "4")
+                intent.putExtra("branch", "cse")
+                startActivity(intent)
+            }
+            txtEce.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "4")
+                intent.putExtra("branch", "ece")
+                startActivity(intent)
+            }
+            txtEe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "4")
+                intent.putExtra("branch", "ee")
+                startActivity(intent)
+            }
+            txtMe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "4")
+                intent.putExtra("branch", "me")
+                startActivity(intent)
+            }
+            txtFo.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "4")
+                intent.putExtra("branch", "fo")
+                startActivity(intent)
+            }
         }
         btn5th.setOnClickListener {
 
@@ -113,12 +297,54 @@ class NotesActivity : AppCompatActivity() {
             llBranch.visibility = View.VISIBLE
             yearName.text = "5th Year"
             imgCancel.setOnClickListener {
-                choose.text="Choose your year of study"
+                choose.text = "Choose your year of study"
                 llBranch.visibility = View.GONE
                 llBranch.isEnabled = false
                 rlYears.visibility = View.VISIBLE
             }
 
+            txtAe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "5")
+                intent.putExtra("branch", "ae")
+                startActivity(intent)
+            }
+            txtCe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "5")
+                intent.putExtra("branch", "ce")
+                startActivity(intent)
+            }
+            txtCse.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "5")
+                intent.putExtra("branch", "cse")
+                startActivity(intent)
+            }
+            txtEce.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "5")
+                intent.putExtra("branch", "ece")
+                startActivity(intent)
+            }
+            txtEe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "5")
+                intent.putExtra("branch", "ee")
+                startActivity(intent)
+            }
+            txtMe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "5")
+                intent.putExtra("branch", "me")
+                startActivity(intent)
+            }
+            txtFo.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "5")
+                intent.putExtra("branch", "fo")
+                startActivity(intent)
+            }
         }
 
         btn6th.setOnClickListener {
@@ -130,12 +356,54 @@ class NotesActivity : AppCompatActivity() {
             llBranch.visibility = View.VISIBLE
             yearName.text = "6th Year"
             imgCancel.setOnClickListener {
-                choose.text="Choose your year of study"
+                choose.text = "Choose your year of study"
                 llBranch.visibility = View.GONE
                 llBranch.isEnabled = false
                 rlYears.visibility = View.VISIBLE
             }
 
+            txtAe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "6")
+                intent.putExtra("branch", "ae")
+                startActivity(intent)
+            }
+            txtCe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "6")
+                intent.putExtra("branch", "ce")
+                startActivity(intent)
+            }
+            txtCse.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "6")
+                intent.putExtra("branch", "cse")
+                startActivity(intent)
+            }
+            txtEce.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "6")
+                intent.putExtra("branch", "ece")
+                startActivity(intent)
+            }
+            txtEe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "6")
+                intent.putExtra("branch", "ee")
+                startActivity(intent)
+            }
+            txtMe.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "6")
+                intent.putExtra("branch", "me")
+                startActivity(intent)
+            }
+            txtFo.setOnClickListener {
+                val intent = Intent(this, ViewNotesActivity::class.java)
+                intent.putExtra("year", "6")
+                intent.putExtra("branch", "fo")
+                startActivity(intent)
+            }
         }
     }
 

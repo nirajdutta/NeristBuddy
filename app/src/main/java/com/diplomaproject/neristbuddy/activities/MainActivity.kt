@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.diplomaproject.neristbuddy.R
+import com.diplomaproject.neristbuddy.fragments.HomeFragment
 import com.diplomaproject.neristbuddy.fragments.ProfileFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -47,17 +48,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         drawerLayout = findViewById(R.id.dlMain)
         toolbar = findViewById(R.id.toolbar)
-        btnNotes = findViewById(R.id.btnNotes)
-        btnDoubts = findViewById(R.id.btnDoubts)
-        btnTnp = findViewById(R.id.btnTnp)
-        btnLost = findViewById(R.id.btnLost)
-        btnEvents = findViewById(R.id.btnEvents)
-        btnCCA = findViewById(R.id.btnCCA)
+
+
+
         navigationView = findViewById(R.id.navigationView)
         headerLayout=navigationView.inflateHeaderView(R.layout.headerlayout)
 
         txtUsername=headerLayout.findViewById(R.id.txtUsername)
         val uid=user?.uid
+
+        setupToolbar()
+        openHome()
 
         var userName:String
         val ref=db.reference.child("Users").child(uid!!)
@@ -78,16 +79,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.title = "My Nerist Buddy"
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_tab)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
-        btnNotes.setOnClickListener {
-            startActivity(Intent(this, NotesActivity::class.java))
-        }
+
+//        btnNotes.setOnClickListener {
+//            startActivity(Intent(this, NotesActivity::class.java))
+//        }
 
 
         navigationView.setNavigationItemSelectedListener {
@@ -101,6 +98,9 @@ class MainActivity : AppCompatActivity() {
             previousMenuItem = it
 
             when (it.itemId) {
+                R.id.homepage->openHome()
+
+
                 R.id.logout -> {
 
                     val dialog: AlertDialog.Builder = AlertDialog.Builder(this)
@@ -137,6 +137,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "My Nerist Buddy"
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_tab)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         val id = item.itemId
@@ -146,19 +154,21 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+    fun openHome(){
+        val fragment = HomeFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frameLayout, fragment)
+        transaction.commit()
+        supportActionBar?.title = "My Nerist Buddy"
+        navigationView.setCheckedItem(R.id.homepage)
+        drawerLayout.closeDrawers()
+    }
 
     override fun onBackPressed() {
-
-
-        if (supportActionBar?.title!="My Nerist Buddy"){
-            supportFragmentManager.beginTransaction().detach(profileFragment).commit()
-            navigationView.checkedItem!!.isChecked=false
-            navigationView.checkedItem!!.isCheckable=false
-            supportActionBar?.title="My Nerist Buddy"
-        }
-        else{
-            drawerLayout.closeDrawers()
-            super.onBackPressed()
+        val frag = supportFragmentManager.findFragmentById(R.id.frameLayout)
+        when (frag) {
+            !is HomeFragment -> openHome()
+            else ->super.onBackPressed()
         }
 
     }
