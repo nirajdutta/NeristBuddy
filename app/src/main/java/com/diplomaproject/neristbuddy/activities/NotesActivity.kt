@@ -76,45 +76,39 @@ class NotesActivity : AppCompatActivity() {
 
             txtAe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "1")
+                intent.putExtra("year", "1st")
                 intent.putExtra("branch", "ae")
                 startActivity(intent)
             }
             txtCe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "1")
+                intent.putExtra("year", "1st")
                 intent.putExtra("branch", "ce")
                 startActivity(intent)
             }
             txtCse.setOnClickListener {
-                val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "1")
-                intent.putExtra("branch", "cse")
-                startActivity(intent)
+                Toast.makeText(this,"CSE branch not found in 1st year",Toast.LENGTH_SHORT).show()
             }
             txtEce.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "1")
+                intent.putExtra("year", "1st")
                 intent.putExtra("branch", "ece")
                 startActivity(intent)
             }
             txtEe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "1")
+                intent.putExtra("year", "1st")
                 intent.putExtra("branch", "ee")
                 startActivity(intent)
             }
             txtMe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "1")
+                intent.putExtra("year", "1st")
                 intent.putExtra("branch", "me")
                 startActivity(intent)
             }
             txtFo.setOnClickListener {
-                val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "1")
-                intent.putExtra("branch", "fo")
-                startActivity(intent)
+                Toast.makeText(this,"Forestry branch not found in 1st year",Toast.LENGTH_SHORT).show()
             }
         }
         btn2nd.setOnClickListener {
@@ -133,45 +127,39 @@ class NotesActivity : AppCompatActivity() {
 
             txtAe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "2")
+                intent.putExtra("year", "2nd")
                 intent.putExtra("branch", "ae")
                 startActivity(intent)
             }
             txtCe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "2")
+                intent.putExtra("year", "2nd")
                 intent.putExtra("branch", "ce")
                 startActivity(intent)
             }
             txtCse.setOnClickListener {
-                val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "2")
-                intent.putExtra("branch", "cse")
-                startActivity(intent)
+                Toast.makeText(this,"CSE branch not found in 2nd year",Toast.LENGTH_SHORT).show()
             }
             txtEce.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "2")
+                intent.putExtra("year", "2nd")
                 intent.putExtra("branch", "ece")
                 startActivity(intent)
             }
             txtEe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "2")
+                intent.putExtra("year", "2nd")
                 intent.putExtra("branch", "ee")
                 startActivity(intent)
             }
             txtMe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "2")
+                intent.putExtra("year", "2nd")
                 intent.putExtra("branch", "me")
                 startActivity(intent)
             }
             txtFo.setOnClickListener {
-                val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "2")
-                intent.putExtra("branch", "fo")
-                startActivity(intent)
+                Toast.makeText(this,"Forestry branch not found in 2nd year",Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -191,43 +179,43 @@ class NotesActivity : AppCompatActivity() {
 
             txtAe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "3")
+                intent.putExtra("year", "3rd")
                 intent.putExtra("branch", "ae")
                 startActivity(intent)
             }
             txtCe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "3")
+                intent.putExtra("year", "3rd")
                 intent.putExtra("branch", "ce")
                 startActivity(intent)
             }
             txtCse.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "3")
+                intent.putExtra("year", "3rd")
                 intent.putExtra("branch", "cse")
                 startActivity(intent)
             }
             txtEce.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "3")
+                intent.putExtra("year", "3rd")
                 intent.putExtra("branch", "ece")
                 startActivity(intent)
             }
             txtEe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "3")
+                intent.putExtra("year", "3rd")
                 intent.putExtra("branch", "ee")
                 startActivity(intent)
             }
             txtMe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "3")
+                intent.putExtra("year", "3rd")
                 intent.putExtra("branch", "me")
                 startActivity(intent)
             }
             txtFo.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "3")
+                intent.putExtra("year", "3rd")
                 intent.putExtra("branch", "fo")
                 startActivity(intent)
             }
@@ -248,43 +236,43 @@ class NotesActivity : AppCompatActivity() {
 
             txtAe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "4")
+                intent.putExtra("year", "4th")
                 intent.putExtra("branch", "ae")
                 startActivity(intent)
             }
             txtCe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "4")
+                intent.putExtra("year", "4th")
                 intent.putExtra("branch", "ce")
                 startActivity(intent)
             }
             txtCse.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "4")
+                intent.putExtra("year", "4th")
                 intent.putExtra("branch", "cse")
                 startActivity(intent)
             }
             txtEce.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "4")
+                intent.putExtra("year", "4th")
                 intent.putExtra("branch", "ece")
                 startActivity(intent)
             }
             txtEe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "4")
+                intent.putExtra("year", "4th")
                 intent.putExtra("branch", "ee")
                 startActivity(intent)
             }
             txtMe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "4")
+                intent.putExtra("year", "4th")
                 intent.putExtra("branch", "me")
                 startActivity(intent)
             }
             txtFo.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "4")
+                intent.putExtra("year", "4th")
                 intent.putExtra("branch", "fo")
                 startActivity(intent)
             }
@@ -305,43 +293,43 @@ class NotesActivity : AppCompatActivity() {
 
             txtAe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "5")
+                intent.putExtra("year", "5th")
                 intent.putExtra("branch", "ae")
                 startActivity(intent)
             }
             txtCe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "5")
+                intent.putExtra("year", "5th")
                 intent.putExtra("branch", "ce")
                 startActivity(intent)
             }
             txtCse.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "5")
+                intent.putExtra("year", "5th")
                 intent.putExtra("branch", "cse")
                 startActivity(intent)
             }
             txtEce.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "5")
+                intent.putExtra("year", "5th")
                 intent.putExtra("branch", "ece")
                 startActivity(intent)
             }
             txtEe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "5")
+                intent.putExtra("year", "5th")
                 intent.putExtra("branch", "ee")
                 startActivity(intent)
             }
             txtMe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "5")
+                intent.putExtra("year", "5th")
                 intent.putExtra("branch", "me")
                 startActivity(intent)
             }
             txtFo.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "5")
+                intent.putExtra("year", "5th")
                 intent.putExtra("branch", "fo")
                 startActivity(intent)
             }
@@ -364,43 +352,43 @@ class NotesActivity : AppCompatActivity() {
 
             txtAe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "6")
+                intent.putExtra("year", "6th")
                 intent.putExtra("branch", "ae")
                 startActivity(intent)
             }
             txtCe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "6")
+                intent.putExtra("year", "6th")
                 intent.putExtra("branch", "ce")
                 startActivity(intent)
             }
             txtCse.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "6")
+                intent.putExtra("year", "6th")
                 intent.putExtra("branch", "cse")
                 startActivity(intent)
             }
             txtEce.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "6")
+                intent.putExtra("year", "6th")
                 intent.putExtra("branch", "ece")
                 startActivity(intent)
             }
             txtEe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "6")
+                intent.putExtra("year", "6th")
                 intent.putExtra("branch", "ee")
                 startActivity(intent)
             }
             txtMe.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "6")
+                intent.putExtra("year", "6th")
                 intent.putExtra("branch", "me")
                 startActivity(intent)
             }
             txtFo.setOnClickListener {
                 val intent = Intent(this, ViewNotesActivity::class.java)
-                intent.putExtra("year", "6")
+                intent.putExtra("year", "6th")
                 intent.putExtra("branch", "fo")
                 startActivity(intent)
             }
