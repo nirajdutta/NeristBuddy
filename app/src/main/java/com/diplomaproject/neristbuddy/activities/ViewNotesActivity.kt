@@ -1,5 +1,6 @@
 package com.diplomaproject.neristbuddy.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.diplomaproject.neristbuddy.R
 import com.diplomaproject.neristbuddy.adapter.NotesRecyclerAdapter
 import com.diplomaproject.neristbuddy.util.NotesList
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -32,6 +34,7 @@ class ViewNotesActivity : AppCompatActivity() {
     lateinit var notesRecyclerAdapter: NotesRecyclerAdapter
     lateinit var year: String
     lateinit var txtNoNotes: TextView
+    lateinit var fab:FloatingActionButton
 
 
     lateinit var branch: String
@@ -46,6 +49,7 @@ class ViewNotesActivity : AppCompatActivity() {
         rlProgress = findViewById(R.id.rlProgress)
         progressBar = findViewById(R.id.progressbar)
         txtNoNotes = findViewById(R.id.txtNoNotes)
+        fab=findViewById(R.id.fab)
 
         rlProgress.visibility = View.VISIBLE
         progressBar.visibility = View.VISIBLE
@@ -59,6 +63,7 @@ class ViewNotesActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     notesList.clear()
                     for (notes: DataSnapshot in snapshot.children) {
+                        try{
                         val notes = NotesList(
                             notes.child("name").value as String,
                             notes.child("notes").value as String,
@@ -71,6 +76,9 @@ class ViewNotesActivity : AppCompatActivity() {
                         recyclerView.layoutManager = linearLayoutManager
                         notesRecyclerAdapter.notifyDataSetChanged()
                         recyclerView.adapter = notesRecyclerAdapter
+                    }catch (e:NullPointerException){
+                        println("exception-----> ${e.message}")
+                    }
                     }
                     rlProgress.visibility = View.GONE
                     progressBar.visibility = View.GONE
@@ -85,7 +93,13 @@ class ViewNotesActivity : AppCompatActivity() {
 
             })
 
-
+        fab.setOnClickListener {
+            val intent=Intent(this,UploadNotesActivity::class.java)
+            intent.putExtra("year",year)
+            intent.putExtra("branch",branch)
+            startActivity(intent)
+            finish()
+        }
 
     }
 

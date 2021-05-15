@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.UploadNotesActivity">
+
+    <EditText
+        android:id="@+id/etTopic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+        android:hint="Enter Topic name"
+        android:maxLines="1" />
+
+    <EditText
+        android:layout_below="@+id/etTopic"
+        android:id="@+id/etNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Enter notes details"
+        android:maxLines="1" />
+    <ImageView
+        android:id="@+id/imgNotes"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/etNotes"
+        android:layout_width="300dp"
+        android:layout_height="400dp"/>
+
+
+    <Button
+        android:id="@+id/btnImageSelect"
+
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imgNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Select Image"
+        android:textAllCaps="false" />
+
+    <Button
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:id="@+id/btnUpload"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Upload"
+        android:textAllCaps="false" />
+
+</RelativeLayout>

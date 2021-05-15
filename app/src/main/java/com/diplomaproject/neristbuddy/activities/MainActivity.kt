@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -43,12 +44,15 @@ class MainActivity : AppCompatActivity() {
     val auth = FirebaseAuth.getInstance()
     val user = auth.currentUser
     val db=FirebaseDatabase.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         drawerLayout = findViewById(R.id.dlMain)
         toolbar = findViewById(R.id.toolbar)
 
+        val sharedPreferences=getSharedPreferences(R.string.saved_preferences.toString(),
+            MODE_PRIVATE)
 
 
         navigationView = findViewById(R.id.navigationView)
@@ -67,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                 userName=snapshot.child("name").value.toString()
                 txtUsername.text=userName
                 println(userName)
+                sharedPreferences.edit().putString("userName",userName).apply()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -74,7 +79,6 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-
 
 
 
@@ -172,4 +176,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
+
 }

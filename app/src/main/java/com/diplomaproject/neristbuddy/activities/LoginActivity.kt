@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(etId.text.toString(),etPassword.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful){
                         user = auth.currentUser!!
-                        val uid=user.uid
+                        val uid= user!!.uid
                         Toast.makeText(this,"Authentication Successful",Toast.LENGTH_SHORT).show()
                         val intent=Intent(this, MainActivity::class.java)
 //                    sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()

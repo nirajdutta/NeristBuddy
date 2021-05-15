@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.NeristBuddy">
-        <activity android:name=".activities.ViewNotesActivity"></activity>
+        <activity android:name=".activities.UploadNotesActivity"></activity>
+        <activity android:name=".activities.ViewNotesActivity" />
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar">
@@ -27,7 +28,7 @@
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".activities.LoginActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

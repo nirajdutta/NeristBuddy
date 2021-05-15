@@ -26,7 +26,7 @@ class NotesRecyclerAdapter(var context: Context, var listOfNotes: ArrayList<Note
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         var notesItem=listOfNotes[position]
-        holder.txtName.text=notesItem.topicName.toString()
+        holder.txtName.text=notesItem.name.toString()
         holder.txtNotes.text=notesItem.notes.toString()
         holder.txtUploadedBy.text=notesItem.uploadedBy.toString()
         Picasso.get().load(notesItem.image).placeholder(R.drawable.placeholder).error(R.drawable.error_image).into(holder.imgNotes)
