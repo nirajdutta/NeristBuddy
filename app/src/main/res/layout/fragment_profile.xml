@@ -4,18 +4,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Theme.Design.Light"
     tools:context=".fragments.ProfileFragment">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/profile_image"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/download"
+        android:src="@drawable/user"
         app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"
-        />
+        app:civ_border_color="#FF000000" />
+
+    <Button
+
+        android:id="@+id/btnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_style"
+        android:textColor="@color/black"
+        android:text="Update Profile Picture"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnUpdate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="#ADBBBC"
+        android:text="Cancel"
+        android:textColor="@color/black"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/txtUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="UserName"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtUsername"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="john@gmail.com"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

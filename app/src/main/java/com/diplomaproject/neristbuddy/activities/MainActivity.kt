@@ -24,6 +24,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var navigationView: NavigationView
     lateinit var txtUsername:TextView
     lateinit var headerLayout: View
+    lateinit var imgProfile:CircleImageView
 
     val profileFragment=ProfileFragment()
     var previousMenuItem: MenuItem? = null
@@ -57,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
         navigationView = findViewById(R.id.navigationView)
         headerLayout=navigationView.inflateHeaderView(R.layout.headerlayout)
-
+        imgProfile=headerLayout.findViewById(R.id.imgUser)
         txtUsername=headerLayout.findViewById(R.id.txtUsername)
         val uid=user?.uid
 
@@ -72,6 +75,11 @@ class MainActivity : AppCompatActivity() {
                 txtUsername.text=userName
                 println(userName)
                 sharedPreferences.edit().putString("userName",userName).apply()
+                sharedPreferences.edit().putString("email",snapshot.child("email").value.toString()).apply()
+                if (snapshot.hasChild("image")){
+                    sharedPreferences.edit().putString("image",snapshot.child("image").value.toString()).apply()
+                    Picasso.get().load(snapshot.child("image").value.toString()).placeholder(R.drawable.user).error(R.drawable.user).into(imgProfile)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

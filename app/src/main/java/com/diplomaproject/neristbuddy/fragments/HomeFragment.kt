@@ -11,9 +11,6 @@ import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import com.diplomaproject.neristbuddy.R
 import com.diplomaproject.neristbuddy.activities.NotesActivity
-import com.diplomaproject.neristbuddy.util.PriorityList
-import java.util.*
-import kotlin.Comparator
 
 class HomeFragment : Fragment() {
 

@@ -1,20 +1,18 @@
 package com.diplomaproject.neristbuddy.activities
 
 import android.app.Activity
+import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RelativeLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-
 import com.diplomaproject.neristbuddy.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 
 
 class LoginActivity : AppCompatActivity() {
@@ -23,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var etPassword: EditText
     lateinit var llLogin:RelativeLayout
     lateinit var rlProgress:RelativeLayout
+    lateinit var txtRegister:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
         etId = findViewById(R.id.etId)
         etPassword = findViewById(R.id.etPassword)
         rlProgress=findViewById(R.id.rlProgress)
+        txtRegister=findViewById(R.id.txtRegister)
 
         llLogin.setOnClickListener {
             hideKeyBoard()
@@ -45,54 +45,72 @@ class LoginActivity : AppCompatActivity() {
         val auth=FirebaseAuth.getInstance()
         var user=auth.currentUser
 
+        txtRegister.paintFlags = txtRegister.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        txtRegister.setOnClickListener {
+            startActivity(Intent(this,RegistrationActivity::class.java))
+        }
 
         btnlogin.setOnClickListener {
-            rlProgress.visibility=View.VISIBLE
-            llLogin.visibility=View.GONE
+            val loading= ProgressDialog(this)
+            loading.setMessage("Please wait Signing in...")
+            loading.setCanceledOnTouchOutside(false)
+            loading.show()
             if (isValidInput()){
-                auth.signInWithEmailAndPassword(etId.text.toString(),etPassword.text.toString()).addOnCompleteListener {
+                auth.signInWithEmailAndPassword(etId.text.toString(), etPassword.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful){
                         user = auth.currentUser!!
                         val uid= user!!.uid
-                        Toast.makeText(this,"Authentication Successful",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Authentication Successful", Toast.LENGTH_SHORT).show()
                         val intent=Intent(this, MainActivity::class.java)
 //                    sharedPreferences.edit().putBoolean("isLoggedIn",true).apply()
                         startActivity(intent)
-                        rlProgress.visibility=View.GONE
+                        loading.dismiss()
                         finish()
                     }
                     else{
-                        rlProgress.visibility=View.GONE
-                        llLogin.visibility=View.VISIBLE
-                        Toast.makeText(this,"Authentication Failed",Toast.LENGTH_SHORT).show()
+                        loading.dismiss()
+                        Toast.makeText(this, "Authentication Failed", Toast.LENGTH_SHORT).show()
                         val msg=it.exception.toString()
                         println("error:  $msg")
-                        if (msg.contains("badly formatted",true)){
-                            Toast.makeText(this, "Enter a correct email address", Toast.LENGTH_SHORT).show()
+                        if (msg.contains("badly formatted", true)){
+                            Toast.makeText(
+                                this,
+                                "Enter a correct email address",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                        else if (msg.contains("no user record",true)){
-                            Toast.makeText(this, "No user found on this email id", Toast.LENGTH_SHORT).show()
+                        else if (msg.contains("no user record", true)){
+                            Toast.makeText(
+                                this,
+                                "No user found on this email id",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                        else if (msg.contains("password is invalid",true)){
+                        else if (msg.contains("password is invalid", true)){
                             Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT).show()
                         }
-                        else if (msg.contains("We have blocked",true)){
-                            Toast.makeText(this, "Access to this account has been temporarily disabled " +
-                                    "due to many failed login attempts." +
-                                    " You can immediately restore it by resetting your " +
-                                    "password or you can try again later", Toast.LENGTH_SHORT).show()
+                        else if (msg.contains("We have blocked", true)){
+                            Toast.makeText(
+                                this, "Access to this account has been temporarily disabled " +
+                                        "due to many failed login attempts." +
+                                        " You can immediately restore it by resetting your " +
+                                        "password or you can try again later", Toast.LENGTH_SHORT
+                            ).show()
                         }
                         else{
                             Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
                         }
                     }
+
                 }
             }
-
+//            loading.dismiss()
 
         }
-        rlProgress.visibility=View.GONE
-        llLogin.visibility=View.VISIBLE
+
+
+
+
     }
     private fun hideKeyBoard(){
         val view=this.currentFocus

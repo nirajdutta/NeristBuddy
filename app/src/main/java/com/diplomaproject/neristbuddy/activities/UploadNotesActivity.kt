@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -67,35 +68,53 @@ class UploadNotesActivity : AppCompatActivity() {
             )
         }
         btnUpload.setOnClickListener {
-            val loadingBar = ProgressDialog(this)
-            loadingBar.setMessage("Please wait, Image is uploading...")
-            loadingBar.setCanceledOnTouchOutside(false)
-            loadingBar.show()
-            imageStorageRef.putFile(imageUri).addOnCompleteListener {
-                imageStorageRef.downloadUrl.addOnCompleteListener {
-                    val imgUrl = it.result.toString()
-                    println("Image---->$imgUrl")
-                    val newNotes = NotesList(
-                        etTopicName.text.toString(),
-                        etNotesDetail.text.toString(),
-                        imgUrl,
-                        userName.toString()
-                    )
-                    dbRef.child("Notes").child(year).child(branch).child(newNotes.name).setValue(
-                        newNotes
-                    ).addOnCompleteListener {
+            if (isValidInput()){
+                val loadingBar = ProgressDialog(this)
+                loadingBar.setMessage("Please wait, Image is uploading...")
+                loadingBar.setCanceledOnTouchOutside(false)
+                loadingBar.show()
+                imageStorageRef.putFile(imageUri).addOnCompleteListener {
+                    imageStorageRef.downloadUrl.addOnCompleteListener {
+                        val imgUrl = it.result.toString()
+                        println("Image---->$imgUrl")
+                        val newNotes = NotesList(
+                            etTopicName.text.toString(),
+                            etNotesDetail.text.toString(),
+                            imgUrl,
+                            userName.toString()
+                        )
+                        dbRef.child("Notes").child(year).child(branch).child(newNotes.name).setValue(
+                            newNotes
+                        ).addOnCompleteListener {
 
-                        Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
-                        loadingBar.dismiss()
-                        gotoViewNotes()
+                            Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
+                            loadingBar.dismiss()
+                            gotoViewNotes()
+                        }
                     }
+                    loadingBar.dismiss()
                 }
-                loadingBar.dismiss()
-            }
 
+            }
 
         }
 
+    }
+
+    private fun isValidInput(): Boolean {
+        val topic:String= etTopicName.text.toString()
+        val details:String= etNotesDetail.text.toString()
+        var valid = true
+        if (TextUtils.isEmpty(topic.trim())) {
+            etTopicName.error = "Required"
+            valid = false
+        }
+
+        if (TextUtils.isEmpty(details.trim())) {
+            etNotesDetail.error = "Required"
+            valid = false
+        }
+        return valid
     }
 
     fun gotoViewNotes() {
