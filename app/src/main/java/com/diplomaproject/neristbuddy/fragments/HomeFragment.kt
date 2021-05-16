@@ -11,6 +11,8 @@ import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import com.diplomaproject.neristbuddy.R
 import com.diplomaproject.neristbuddy.activities.NotesActivity
+import com.diplomaproject.neristbuddy.activities.cca_activity
+import com.diplomaproject.neristbuddy.activities.tnpactivity
 
 class HomeFragment : Fragment() {
 
@@ -50,7 +52,12 @@ class HomeFragment : Fragment() {
         btnNotes.setOnClickListener {
             startActivity(Intent(activity,NotesActivity::class.java))
         }
-
+        btnTnp.setOnClickListener {
+            startActivity(Intent(activity, tnpactivity::class.java))
+        }
+        btnCCA.setOnClickListener {
+            startActivity(Intent(activity, cca_activity::class.java))
+        }
 
         return view
     }

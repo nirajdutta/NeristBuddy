@@ -1,5 +1,7 @@
 package com.diplomaproject.neristbuddy.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +22,11 @@ public class tnpactivity extends AppCompatActivity {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://nerist.ac.in/placement-cell");
+//                gotoUrl("https://nerist.ac.in/placement-cell");
+                String url="https://nerist.ac.in/placement-cell";
+                Intent intent=new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
             }
         });
 

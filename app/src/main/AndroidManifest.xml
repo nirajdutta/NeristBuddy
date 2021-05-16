@@ -14,6 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NeristBuddy">
         <activity android:name=".activities.RegistrationActivity"></activity>
+        <activity android:name=".activities.tnpactivity"></activity>
+        <activity android:name=".activities.cca_activity"></activity>
         <activity android:name=".activities.UploadNotesActivity" />
         <activity android:name=".activities.ViewNotesActivity" />
         <activity
