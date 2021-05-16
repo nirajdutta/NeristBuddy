@@ -6,15 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/layoutScrollView"
-    android:theme="@style/Theme.MaterialComponents"
+    android:scrollbarStyle="insideOverlay"
+    android:scrollbars="vertical"
     tools:context=".activities.UploadNotesActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
         <EditText
+            android:textColorHint="@color/black"
             android:id="@+id/etTopic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,6 +27,7 @@
             android:maxLines="1" />
 
         <EditText
+            android:textColorHint="@color/black"
             android:layout_below="@+id/etTopic"
             android:layout_centerHorizontal="true"
         android:id="@+id/etNotes"
@@ -88,11 +91,10 @@
             android:textAllCaps="false" />
 
         <Button
-
+            android:layout_below="@+id/btnImageSelect"
             android:id="@+id/btnUpload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center_horizontal"

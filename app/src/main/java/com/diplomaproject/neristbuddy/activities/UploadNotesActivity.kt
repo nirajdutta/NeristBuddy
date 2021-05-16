@@ -212,10 +212,16 @@ class UploadNotesActivity : AppCompatActivity() {
                             dbRef.child("Notes").child(year).child(branch).child(newNotes.name).setValue(
                                     newNotes
                             ).addOnCompleteListener {
+                                if (it.isSuccessful){
+                                    Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
+                                    gotoViewNotes()
+                                    loadingBar.dismiss()
+                                }
+                                else{
+                                    Toast.makeText(this, "Could not add to database. Please try again", Toast.LENGTH_SHORT).show()
+                                }
 
-                                Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
-                                loadingBar.dismiss()
-                                gotoViewNotes()
+
                             }
                         }
                         loadingBar.dismiss()

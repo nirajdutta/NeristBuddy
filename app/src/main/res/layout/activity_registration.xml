@@ -25,6 +25,7 @@
 
         <EditText
             android:id="@+id/etEmailId"
+            android:textColorHint="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -35,6 +36,7 @@
             android:padding="8dp" />
 
         <EditText
+            android:textColorHint="@color/black"
             android:id="@+id/etUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,12 +48,13 @@
             android:padding="8dp" />
 
         <EditText
+            android:textColorHint="@color/black"
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/et_style"
-            android:hint="Email address"
+            android:hint="Set your password"
             android:inputType="textPassword"
             android:maxLength="8"
             android:maxLines="1"
