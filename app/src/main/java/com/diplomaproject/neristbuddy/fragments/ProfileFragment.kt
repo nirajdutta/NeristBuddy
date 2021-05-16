@@ -9,6 +9,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.diplomaproject.neristbuddy.R
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -84,13 +86,13 @@ class ProfileFragment : Fragment() {
 
 
 
-        val url=sharedPreferences?.getString("image","https://firebasestorage.googleapis.com/v0/b/my-nerist-buddy.appspot.com/o/profile%2Fuser.png?alt=media&token=48d72495-c2d7-497e-b4e7-24dd40331632")
+        val url=sharedPreferences?.getString("image","R.drawable.user")
         Picasso.get().load(url).placeholder(R.drawable.user).error(R.drawable.user).into(imgProfile)
 
         imgProfile.setOnClickListener {
             val dialog=AlertDialog.Builder(activity as Context)
             dialog.setMessage("Do you want to change your profile picture?")
-            dialog.setPositiveButton("Yes",DialogInterface.OnClickListener { dialogInterface, i ->
+            dialog.setPositiveButton("Change",DialogInterface.OnClickListener { dialogInterface, i ->
                 val galleryIntent = Intent()
                 galleryIntent.action = Intent.ACTION_GET_CONTENT
                 galleryIntent.type = "image/*"
@@ -98,6 +100,23 @@ class ProfileFragment : Fragment() {
                     galleryIntent,
                     GalleryPickRequest
                 )
+            })
+            dialog.setNeutralButton("Remove",DialogInterface.OnClickListener{dialogInterface, i ->
+                try {
+                    val loading=ProgressDialog(activity as Context)
+                    loading.setCanceledOnTouchOutside(false)
+                    loading.show()
+                    imageStorageRef.delete().addOnCompleteListener {
+                        Toast.makeText(activity as Context, "Profile picture removed Successfully", Toast.LENGTH_SHORT).show()
+                        Picasso.get().load(R.drawable.user).into(imgProfile)
+                        dbRef.child("Users").child(uid).child("image").removeValue()
+                        sharedPreferences?.edit()?.remove("image")?.apply()
+                        loading.dismiss()
+                    }
+
+                }catch (e:FirebaseException){
+                    Log.d("Deletion error",e.message.toString())
+                }
             })
             dialog.setNegativeButton("No",DialogInterface.OnClickListener { dialogInterface, i ->
 

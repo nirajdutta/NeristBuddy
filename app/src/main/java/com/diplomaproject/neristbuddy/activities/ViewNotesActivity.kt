@@ -62,28 +62,59 @@ class ViewNotesActivity : AppCompatActivity() {
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     notesList.clear()
-                    for (notes: DataSnapshot in snapshot.children) {
-                        try{
-                        val notes = NotesList(
-                            notes.child("name").value as String,
-                            notes.child("notes").value as String,
-                            notes.child("image").value as String,
-                            notes.child("uploadedBy").value as String,
-                        )
-                        notesList.add(notes)
-                        notesRecyclerAdapter =
-                            NotesRecyclerAdapter(this@ViewNotesActivity, notesList)
-                        recyclerView.layoutManager = linearLayoutManager
-                        notesRecyclerAdapter.notifyDataSetChanged()
-                        recyclerView.adapter = notesRecyclerAdapter
-                    }catch (e:NullPointerException){
-                        println("exception-----> ${e.message}")
-                    }
+                    for (notesSnap: DataSnapshot in snapshot.children) {
+                        try {
+                            if (notesSnap.hasChild("image")){
+                                val notes = NotesList(
+                                        notesSnap.child("name").value as String,
+                                        notesSnap.child("notes").value as String,
+                                        notesSnap.child("image").value as String,
+                                        notesSnap.child("imageName").value as String,
+                                        null,
+                                        null,
+                                        notesSnap.child("uploadedBy").value as String,
+
+                                )
+                                notesList.add(notes)
+                            }
+                            else if (notesSnap.hasChild("pdf")){
+                                val notes = NotesList(
+                                        notesSnap.child("name").value as String,
+                                        notesSnap.child("notes").value as String,
+                                        null,
+                                        null,
+                                        notesSnap.child("pdf").value as String,
+                                        notesSnap.child("pdfName").value as String,
+                                        notesSnap.child("uploadedBy").value as String,
+                                )
+                                notesList.add(notes)
+                            }
+                            else{
+                                val notes = NotesList(
+                                        notesSnap.child("name").value as String,
+                                        notesSnap.child("notes").value as String,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        notesSnap.child("uploadedBy").value as String,
+                                )
+                                notesList.add(notes)
+                            }
+
+                            notesRecyclerAdapter =
+                                    NotesRecyclerAdapter(this@ViewNotesActivity, notesList,year,branch)
+                            recyclerView.layoutManager = linearLayoutManager
+                            notesRecyclerAdapter.notifyDataSetChanged()
+                            recyclerView.adapter = notesRecyclerAdapter
+                        } catch (e: NullPointerException) {
+                            println("exception-----> ${e.message}")
+                        }
                     }
                     rlProgress.visibility = View.GONE
                     progressBar.visibility = View.GONE
-                    if (notesList.size==0){
-                        txtNoNotes.visibility=View.VISIBLE
+                    if (notesList.size == 0) {
+                        txtNoNotes.visibility = View.VISIBLE
                     }
                 }
 

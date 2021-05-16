@@ -92,13 +92,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
-//        btnNotes.setOnClickListener {
-//            startActivity(Intent(this, NotesActivity::class.java))
-//        }
-
-
         navigationView.setNavigationItemSelectedListener {
             if (previousMenuItem != null) {
                 previousMenuItem?.isChecked = false
@@ -124,6 +117,7 @@ class MainActivity : AppCompatActivity() {
                             val context: Context = applicationContext
                             val intent = Intent(context, LoginActivity::class.java)
                             startActivity(intent)
+                            sharedPreferences.edit().clear().apply()
                             finish()
                         })
                         .setNegativeButton(

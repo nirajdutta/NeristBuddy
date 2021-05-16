@@ -1,12 +1,15 @@
 package com.diplomaproject.neristbuddy.activities
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RelativeLayout
 import android.widget.Toast
 import com.diplomaproject.neristbuddy.R
 import com.diplomaproject.neristbuddy.util.User
@@ -18,6 +21,7 @@ class RegistrationActivity : AppCompatActivity() {
     lateinit var etName:EditText
     lateinit var etPassword:EditText
     lateinit var btnRegister:Button
+    lateinit var rlRegister:RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +33,13 @@ class RegistrationActivity : AppCompatActivity() {
         etName=findViewById(R.id.etUserName)
         etPassword=findViewById(R.id.etPassword)
         btnRegister=findViewById(R.id.btnRegister)
-
+        rlRegister=findViewById(R.id.rlRegister)
 
         val auth= FirebaseAuth.getInstance()
 
+        rlRegister.setOnClickListener {
+            hideKeyBoard()
+        }
 
         btnRegister.setOnClickListener {
             val loadingBar=ProgressDialog(this)
@@ -114,4 +121,12 @@ class RegistrationActivity : AppCompatActivity() {
         }
         return valid
     }
+    private fun hideKeyBoard(){
+        val view=this.currentFocus
+        if (view!=null){
+            val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
 }
