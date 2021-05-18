@@ -12,13 +12,14 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.diplomaproject.neristbuddy.R
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 
 
 class LoginActivity : AppCompatActivity() {
     lateinit var btnlogin: Button
-    lateinit var etId: EditText
-    lateinit var etPassword: EditText
+    lateinit var etId: TextInputEditText
+    lateinit var etPassword: TextInputEditText
     lateinit var llLogin:RelativeLayout
     lateinit var rlProgress:RelativeLayout
     lateinit var txtRegister:TextView
@@ -51,11 +52,12 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnlogin.setOnClickListener {
-            val loading= ProgressDialog(this)
-            loading.setMessage("Please wait Signing in...")
-            loading.setCanceledOnTouchOutside(false)
-            loading.show()
+
             if (isValidInput()){
+                val loading= ProgressDialog(this)
+                loading.setMessage("Please wait Signing in...")
+                loading.setCanceledOnTouchOutside(false)
+                loading.show()
                 auth.signInWithEmailAndPassword(etId.text.toString(), etPassword.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful){
                         user = auth.currentUser!!

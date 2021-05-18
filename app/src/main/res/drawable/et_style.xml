@@ -4,9 +4,6 @@
     <stroke
         android:width="2dp"
         android:color="#000000" />
-    <gradient
 
-        android:centerColor="@color/white"
-        android:gradientRadius="20dp"/>
     <corners android:radius="20dp"/>
 </shape>

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment"
-    android:theme="@style/Theme.MaterialComponents">
+    android:theme="@style/Theme.AppCompat.Light"
+    >
 
 
     <ScrollView
@@ -28,11 +29,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
+                android:textColor="@color/black"
                 android:background="@drawable/btn_style"
                 android:elevation="5dp"
                 android:text="Notes" />
 
             <Button
+                android:textColor="@color/black"
                 android:id="@+id/btnDoubts"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -42,6 +45,7 @@
                 android:text="Doubts" />
 
             <Button
+                android:textColor="@color/black"
                 android:id="@+id/btnTnP"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -51,6 +55,7 @@
                 android:text="T &amp; P" />
 
             <Button
+                android:textColor="@color/black"
                 android:id="@+id/btnLost"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -60,6 +65,7 @@
                 android:text="Lost and Found" />
 
             <Button
+                android:textColor="@color/black"
                 android:id="@+id/btnEvents"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -69,6 +75,7 @@
                 android:text="Events" />
 
             <Button
+                android:textColor="@color/black"
                 android:id="@+id/btnCCA"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"

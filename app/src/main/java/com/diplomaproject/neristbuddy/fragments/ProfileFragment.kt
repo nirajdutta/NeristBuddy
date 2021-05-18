@@ -9,12 +9,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.text.InputType
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -42,6 +44,7 @@ class ProfileFragment : Fragment() {
     lateinit var userName:String
     lateinit var userEmail:String
     lateinit var btnCancel:Button
+    lateinit var edit:TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +58,7 @@ class ProfileFragment : Fragment() {
         imgProfile=view.findViewById(R.id.profile_image)
         btnUpload=view.findViewById(R.id.btnUpdate)
         btnCancel=view.findViewById(R.id.btnCancel)
+        edit=view.findViewById(R.id.edit)
 
         val sharedPreferences=activity?.getSharedPreferences(R.string.saved_preferences.toString(),
             MODE_PRIVATE
@@ -101,24 +105,31 @@ class ProfileFragment : Fragment() {
                     GalleryPickRequest
                 )
             })
-            dialog.setNeutralButton("Remove",DialogInterface.OnClickListener{dialogInterface, i ->
+            dialog.setNegativeButton("Remove",DialogInterface.OnClickListener{dialogInterface, i ->
                 try {
                     val loading=ProgressDialog(activity as Context)
+                    loading.setMessage("Removing")
                     loading.setCanceledOnTouchOutside(false)
                     loading.show()
                     imageStorageRef.delete().addOnCompleteListener {
-                        Toast.makeText(activity as Context, "Profile picture removed Successfully", Toast.LENGTH_SHORT).show()
-                        Picasso.get().load(R.drawable.user).into(imgProfile)
-                        dbRef.child("Users").child(uid).child("image").removeValue()
-                        sharedPreferences?.edit()?.remove("image")?.apply()
-                        loading.dismiss()
+                        if (it.isSuccessful){
+                            Toast.makeText(activity as Context, "Profile picture removed Successfully", Toast.LENGTH_SHORT).show()
+                            Picasso.get().load(R.drawable.user).into(imgProfile)
+                            dbRef.child("Users").child(uid).child("image").removeValue()
+                            sharedPreferences?.edit()?.remove("image")?.apply()
+                            loading.dismiss()
+                        }
+                        else{
+                            loading.dismiss()
+                        }
                     }
 
                 }catch (e:FirebaseException){
+                    Toast.makeText(activity,"Failed to remove your picture" ,Toast.LENGTH_SHORT).show()
                     Log.d("Deletion error",e.message.toString())
                 }
             })
-            dialog.setNegativeButton("No",DialogInterface.OnClickListener { dialogInterface, i ->
+            dialog.setNeutralButton("Cancel",DialogInterface.OnClickListener { dialogInterface, i ->
 
             })
             dialog.create()
@@ -160,6 +171,27 @@ class ProfileFragment : Fragment() {
             dialog.show()
 
         }
+
+        edit.setOnClickListener {
+            val alertDialog=AlertDialog.Builder(activity as Context)
+            alertDialog.setMessage("Enter your new username")
+            val input=EditText(context)
+            input.inputType=InputType.TYPE_CLASS_TEXT
+            alertDialog.setView(input)
+            alertDialog.setPositiveButton("Update",DialogInterface.OnClickListener{dialogInterface, i ->
+                val loadingBar=ProgressDialog(context)
+                loadingBar.setMessage("Updating your name")
+                loadingBar.setCanceledOnTouchOutside(false)
+                loadingBar.show()
+                dbRef.child("Users").child(uid).child("name").setValue(input.text.toString()).addOnSuccessListener {
+                    txtName.text=input.text.toString()
+                    loadingBar.dismiss()
+                }
+            })
+            alertDialog.setNegativeButton("Cancel",DialogInterface.OnClickListener { dialogInterface, i ->  })
+            alertDialog.show()
+        }
+
 
         return view
     }

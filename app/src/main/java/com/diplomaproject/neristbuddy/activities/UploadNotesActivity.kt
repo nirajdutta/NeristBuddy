@@ -6,7 +6,7 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
+import android.content.pm.PackageManager.*
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
@@ -63,14 +63,12 @@ class UploadNotesActivity : AppCompatActivity() {
         cardView = findViewById(R.id.pdfView)
         txtPdfName = findViewById(R.id.pdfName)
 
-        scrollView.setOnClickListener {
-            hideKeyBoard()
-        }
-
         btnUpload.visibility = View.VISIBLE
         var db = FirebaseDatabase.getInstance()
         var dbRef = db.reference
 
+        etTopicName.onFocusChangeListener = View.OnFocusChangeListener { p0, p1 -> hideKeyBoard() }
+        etNotesDetail.onFocusChangeListener= View.OnFocusChangeListener { p0, p1 -> hideKeyBoard() }
 
         val sharedPreferences = getSharedPreferences(
                 R.string.saved_preferences.toString(),
@@ -84,47 +82,20 @@ class UploadNotesActivity : AppCompatActivity() {
 
         btnImageSelect.setOnClickListener {
 
-            select = null
 
             if (ContextCompat.checkSelfPermission(this,
                             Manifest.permission.READ_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
+                    != PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
                         arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        100);
+                        100)
+
+            } else if (ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PERMISSION_GRANTED) {
+                showDialog()
             }
-            val option = arrayOf<CharSequence>("Images", "Pdf")
-            val builder = androidx.appcompat.app.AlertDialog.Builder(this)
-            builder.setTitle("Select file type")
-            builder.setItems(option) { dialog: DialogInterface?, items: Int ->
-                if (option[items] === "Images") {
-                    // select image
-                    select = "image"
 
-                    cardView.visibility = View.GONE
-                    val galleryIntent = Intent()
-                    galleryIntent.action = Intent.ACTION_GET_CONTENT
-                    galleryIntent.type = "image/*"
-                    startActivityForResult(
-                            galleryIntent,
-                            GalleryPickRequest
-                    )
-                } else if (option[items] === "Pdf") {
-                    // select pdf
-
-                    select = "pdf"
-                    imgNotes.visibility = View.GONE
-                    val galleryIntent = Intent()
-                    galleryIntent.action = Intent.ACTION_GET_CONTENT
-                    galleryIntent.type = "application/pdf"
-                    startActivityForResult(
-                            galleryIntent,
-                            2
-                    )
-                }
-
-            }
-            builder.show()
 
         }
         btnUpload.setOnClickListener {
@@ -196,6 +167,7 @@ class UploadNotesActivity : AppCompatActivity() {
                         loadingBar.setMessage("Please wait, pdf is uploading...\n(${humanReadableByteCountBin(it.bytesTransferred)}/${humanReadableByteCountBin(it.totalByteCount)})")
                     }
                     uploadTask.addOnCompleteListener {
+                        loadingBar.setMessage("Please wait...")
 
                         pdfStorageRef.downloadUrl.addOnCompleteListener {
                             val pdfUrl = it.result.toString()
@@ -212,12 +184,11 @@ class UploadNotesActivity : AppCompatActivity() {
                             dbRef.child("Notes").child(year).child(branch).child(newNotes.name).setValue(
                                     newNotes
                             ).addOnCompleteListener {
-                                if (it.isSuccessful){
+                                if (it.isSuccessful) {
                                     Toast.makeText(this, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
                                     gotoViewNotes()
                                     loadingBar.dismiss()
-                                }
-                                else{
+                                } else {
                                     Toast.makeText(this, "Could not add to database. Please try again", Toast.LENGTH_SHORT).show()
                                 }
 
@@ -234,12 +205,55 @@ class UploadNotesActivity : AppCompatActivity() {
 
         }
 
-
     }
 
+    fun showDialog() {
+        select = null
+        val option = arrayOf<CharSequence>("Images", "Pdf")
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setTitle("Select file type")
+        builder.setItems(option) { dialog: DialogInterface?, items: Int ->
+            if (option[items] === "Images") {
+                // select image
+                select = "image"
+
+                cardView.visibility = View.GONE
+                val galleryIntent = Intent()
+                galleryIntent.action = Intent.ACTION_GET_CONTENT
+                galleryIntent.type = "image/*"
+                startActivityForResult(
+                        galleryIntent,
+                        GalleryPickRequest
+                )
+            } else if (option[items] === "Pdf") {
+                // select pdf
+
+                select = "pdf"
+                imgNotes.visibility = View.GONE
+                val galleryIntent = Intent()
+                galleryIntent.action = Intent.ACTION_GET_CONTENT
+                galleryIntent.type = "application/pdf"
+                startActivityForResult(
+                        galleryIntent,
+                        2
+                )
+            }
+
+        }
+        builder.show()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 100 && grantResults[0] == PERMISSION_GRANTED) {
+            showDialog()
+        }
+    }
+
+
     private fun isValidInput(): Boolean {
-        val topic:String= etTopicName.text.toString()
-        val details:String= etNotesDetail.text.toString()
+        val topic: String = etTopicName.text.toString()
+        val details: String = etNotesDetail.text.toString()
         var valid = true
         if (TextUtils.isEmpty(topic.trim())) {
             etTopicName.error = "Required"
@@ -299,7 +313,7 @@ class UploadNotesActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        gotoViewNotes()
+        finish()
     }
 
     @SuppressLint("DefaultLocale")

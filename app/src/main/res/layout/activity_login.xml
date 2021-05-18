@@ -44,11 +44,11 @@
         android:textColor="#43A047"
         android:textSize="26sp" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
 
-        android:id="@+id/etId"
+        android:id="@+id/etIdLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_below="@id/txtMyNeristBuddy"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
@@ -61,30 +61,61 @@
         android:inputType="textEmailAddress"
         android:textAlignment="center"
         android:textColor="#000"
-        tools:targetApi="lollipop" />
+        tools:targetApi="lollipop" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_below="@+id/etId" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <EditText
-        android:textColorHint="@color/black"
-        android:id="@+id/etPassword"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etlayout"
+        android:layout_height="60dp"
+        android:layout_below="@+id/etIdLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/etId"
-        android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="30dp"
         android:background="@drawable/et_style"
-        android:backgroundTint="@color/white"
         android:hint="Password"
+        android:textColor="#000"
+        android:textColorHint="@color/black"
+        android:backgroundTint="@color/white"
         android:inputType="textPassword"
         android:textAlignment="center"
-        android:textColor="#000"
-        tools:targetApi="lollipop" />
+        app:passwordToggleEnabled="true"
+        tools:targetApi="lollipop">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_below="@+id/etId" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--    <EditText-->
+    <!--        -->
+    <!--        android:textColorHint="@color/black"-->
+    <!--        android:id="@+id/etPassword"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_below="@+id/etId"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_marginHorizontal="30dp"-->
+    <!--        android:background="@drawable/et_style"-->
+    <!--        android:backgroundTint="@color/white"-->
+    <!--        android:hint="Password"-->
+    <!--        android:inputType="textPassword"-->
+    <!--        android:textAlignment="center"-->
+    <!--        android:textColor="#000"-->
+    <!--        tools:targetApi="lollipop" />-->
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="115dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etPassword"
+        android:layout_below="@+id/etlayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/btn_style"
@@ -93,7 +124,8 @@
         android:textAllCaps="false"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:elevation="0dp" />
+        app:elevation="0dp"
+        tools:ignore="NotSibling" />
     <TextView
         android:id="@+id/txtRegister"
         android:layout_width="wrap_content"

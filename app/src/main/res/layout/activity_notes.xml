@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.NotesActivity"
     android:id="@+id/rlNotes"
+    android:theme="@style/Theme.AppCompat.Light"
     >
 
     <TextView
@@ -26,7 +27,7 @@
 
     <Button
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="1st year"
         android:id="@+id/btn1stYr"
         android:layout_width="match_parent"
@@ -35,7 +36,7 @@
 
     <Button
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="2nd year"
         android:id="@+id/btn2nd"
         android:layout_width="match_parent"
@@ -45,7 +46,7 @@
 
     <Button
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="3rd year"
         android:id="@+id/btn3rd"
         android:layout_width="match_parent"
@@ -55,7 +56,7 @@
 
     <Button
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="4th year"
         android:id="@+id/btn4th"
         android:layout_width="match_parent"
@@ -65,7 +66,7 @@
 
     <Button
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="5th year"
         android:id="@+id/btn5th"
         android:layout_width="match_parent"
@@ -75,7 +76,7 @@
 
     <Button
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="6th year"
         android:id="@+id/btn6th"
         android:layout_width="match_parent"
@@ -85,8 +86,8 @@
 
 </RelativeLayout>
     <LinearLayout
-        android:visibility="gone"
-        android:background="@drawable/et_style"
+        android:visibility="visible"
+        android:background="#DFDFDF"
         android:id="@+id/llBranch"
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
@@ -115,6 +116,7 @@
             android:textStyle="bold"/>
 
         <TextView
+
             android:padding="5dp"
             android:background="@drawable/txtstyle"
             android:layout_margin="5dp"
@@ -122,7 +124,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="@string/agriculture"/>
         <TextView
             android:padding="6dp"
@@ -132,7 +134,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="@string/civil"/>
         <TextView
             android:padding="6dp"
@@ -142,7 +144,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="@string/computer_science"/>
         <TextView
             android:padding="6dp"
@@ -152,7 +154,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="@string/electrical"/>
         <TextView
             android:padding="6dp"
@@ -162,7 +164,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="@string/electronics"/>
         <TextView
             android:padding="6dp"
@@ -172,7 +174,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="@string/mechanical"/>
         <TextView
             android:padding="6dp"
@@ -182,7 +184,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="@string/forestry"/>
     </LinearLayout>
 

@@ -4,7 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.ViewNotesActivity"
-    android:theme="@style/Theme.MaterialComponents.DayNight">
+    android:theme="@style/Theme.AppCompat.Light">
+    <TextView
+        android:visibility="gone"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:id="@+id/cantFind"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txtNoNotes"
+        android:text="Notes Not Found"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <RelativeLayout
         android:id="@+id/rlProgress"
         android:layout_width="match_parent"

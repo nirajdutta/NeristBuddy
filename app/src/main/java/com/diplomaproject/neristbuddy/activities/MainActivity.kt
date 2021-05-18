@@ -1,18 +1,24 @@
 package com.diplomaproject.neristbuddy.activities
 
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.diplomaproject.neristbuddy.R
@@ -24,17 +30,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import java.io.File
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var btnNotes: Button
-    lateinit var btnDoubts: Button
-    lateinit var btnTnp: Button
-    lateinit var btnLost: Button
-    lateinit var btnEvents: Button
-    lateinit var btnCCA: Button
+
     lateinit var drawerLayout: DrawerLayout
     lateinit var toolbar: androidx.appcompat.widget.Toolbar
     lateinit var navigationView: NavigationView
@@ -48,15 +51,22 @@ class MainActivity : AppCompatActivity() {
     val user = auth.currentUser
     val db=FirebaseDatabase.getInstance()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         drawerLayout = findViewById(R.id.dlMain)
         toolbar = findViewById(R.id.toolbar)
+        if (ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    10)
 
+        }
         val sharedPreferences=getSharedPreferences(R.string.saved_preferences.toString(),
             MODE_PRIVATE)
-
 
         navigationView = findViewById(R.id.navigationView)
         headerLayout=navigationView.inflateHeaderView(R.layout.headerlayout)
@@ -67,14 +77,15 @@ class MainActivity : AppCompatActivity() {
         setupToolbar()
         openHome()
 
+
         var userName:String
         val ref=db.reference.child("Users").child(uid!!)
         ref.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 userName=snapshot.child("name").value.toString()
-                txtUsername.text=userName
+
                 println(userName)
-                sharedPreferences.edit().putString("userName",userName).apply()
+                sharedPreferences.edit().putString("userName",userName).commit()
                 sharedPreferences.edit().putString("email",snapshot.child("email").value.toString()).apply()
                 if (snapshot.hasChild("image")){
                     sharedPreferences.edit().putString("image",snapshot.child("image").value.toString()).apply()
@@ -87,7 +98,18 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-
+        txtUsername.text=sharedPreferences.getString("userName","username")
+//        val firebaseStorage=FirebaseStorage.getInstance().reference.child("profile").child("$uid.jpg")
+//
+//        val rootPath= File(Environment.getExternalStorageDirectory(),"test")
+//        if (!rootPath.exists()){
+//            rootPath.mkdirs()
+//        }
+//        val file=File(rootPath,"$uid.jpg")
+//        firebaseStorage.getFile(file).addOnSuccessListener {
+//            Toast.makeText(this,"downloaded",Toast.LENGTH_SHORT).show()
+//            println(it.totalByteCount)
+//        }
 
 
 
@@ -178,7 +200,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-
 
 }

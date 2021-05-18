@@ -8,6 +8,8 @@
     android:id="@+id/layoutScrollView"
     android:scrollbarStyle="insideOverlay"
     android:scrollbars="vertical"
+    android:clickable="true"
+    android:theme="@style/Theme.AppCompat.Light"
     tools:context=".activities.UploadNotesActivity">
 
     <RelativeLayout
@@ -68,8 +70,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:drawablePadding="5dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:drawablePadding="4dp"
                     android:padding="6dp"
                     android:text="pdf name"
                     android:textSize="18sp"
@@ -80,6 +82,9 @@
         </androidx.cardview.widget.CardView>
 
         <Button
+            android:padding="6dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btn_style"
             android:id="@+id/btnImageSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,6 +96,8 @@
             android:textAllCaps="false" />
 
         <Button
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_style"
             android:layout_below="@+id/btnImageSelect"
             android:id="@+id/btnUpload"
             android:layout_width="wrap_content"

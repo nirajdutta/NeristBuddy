@@ -42,11 +42,12 @@ class RegistrationActivity : AppCompatActivity() {
         }
 
         btnRegister.setOnClickListener {
-            val loadingBar=ProgressDialog(this)
-            loadingBar.setMessage("Please wait. Creating your account")
-            loadingBar.setCanceledOnTouchOutside(false)
-            loadingBar.show()
+
             if (isValidInput()){
+                val loadingBar=ProgressDialog(this)
+                loadingBar.setMessage("Please wait. Creating your account")
+                loadingBar.setCanceledOnTouchOutside(false)
+                loadingBar.show()
                 auth.createUserWithEmailAndPassword(etEmail.text.toString().trim(),etPassword.text.toString().trim()).addOnCompleteListener {
                     if (it.isSuccessful){
                         val user=auth.currentUser

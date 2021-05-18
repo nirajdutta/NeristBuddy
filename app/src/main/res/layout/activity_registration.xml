@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".activities.RegistrationActivity"
-    android:id="@+id/rlRegister">
+    android:id="@+id/rlRegister"
+    android:theme="@style/Theme.AppCompat.Light">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="200dp"

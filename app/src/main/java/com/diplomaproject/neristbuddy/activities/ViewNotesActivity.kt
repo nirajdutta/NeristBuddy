@@ -2,9 +2,12 @@ package com.diplomaproject.neristbuddy.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +28,7 @@ class ViewNotesActivity : AppCompatActivity() {
     var firebaseAuth = FirebaseAuth.getInstance()
     var dbRef = FirebaseDatabase.getInstance().reference
 
-
+    lateinit var cantFind:TextView
     lateinit var rlProgress: RelativeLayout
     lateinit var progressBar: ProgressBar
     lateinit var recyclerView: RecyclerView
@@ -41,6 +44,9 @@ class ViewNotesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_notes)
+
+
+
         year = intent.getStringExtra("year").toString()
         branch = intent.getStringExtra("branch").toString()
         title = "$year Year ${branch.toUpperCase(Locale.ROOT)}"
@@ -50,6 +56,7 @@ class ViewNotesActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressbar)
         txtNoNotes = findViewById(R.id.txtNoNotes)
         fab=findViewById(R.id.fab)
+        cantFind=findViewById(R.id.cantFind)
 
         rlProgress.visibility = View.VISIBLE
         progressBar.visibility = View.VISIBLE
@@ -130,6 +137,48 @@ class ViewNotesActivity : AppCompatActivity() {
             intent.putExtra("branch",branch)
             startActivity(intent)
             finish()
+        }
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search_menu,menu)
+        val search= menu?.findItem(R.id.appSearchBar)
+        val searchView = search?.actionView as SearchView
+        searchView.queryHint = "Search"
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    filterFun(newText)
+                }
+                return true
+            }
+        })
+
+
+        return super.onCreateOptionsMenu(menu)
+    }
+    fun filterFun(strTyped:String){
+        val filteredList= arrayListOf<NotesList>()
+        for (item in notesList){
+            if (item.name.toLowerCase(Locale.ROOT).contains(strTyped.toLowerCase(Locale.ROOT))){
+                filteredList.add(item)
+            }
+        }
+        if (filteredList.size==0){
+            cantFind.visibility=View.VISIBLE
+        }
+        else{
+            cantFind.visibility=View.GONE
+        }
+        try {
+            notesRecyclerAdapter.filterList(filteredList)
+        }
+        catch (e:UninitializedPropertyAccessException){
+            Log.d("Exception",e.message.toString())
         }
 
     }
