@@ -189,13 +189,14 @@ class UploadNotesActivity : AppCompatActivity() {
                                     gotoViewNotes()
                                     loadingBar.dismiss()
                                 } else {
+                                    loadingBar.dismiss()
                                     Toast.makeText(this, "Could not add to database. Please try again", Toast.LENGTH_SHORT).show()
                                 }
 
 
                             }
                         }
-                        loadingBar.dismiss()
+
                     }
 
                 }
@@ -331,7 +332,7 @@ class UploadNotesActivity : AppCompatActivity() {
             i -= 10
         }
         value *= java.lang.Long.signum(bytes).toLong()
-        return java.lang.String.format("%.1f %ciB", value / 1024.0, ci.current())
+        return java.lang.String.format("%.1f %cB", value / 1024.0, ci.current())
     }
 
     private fun hideKeyBoard() {

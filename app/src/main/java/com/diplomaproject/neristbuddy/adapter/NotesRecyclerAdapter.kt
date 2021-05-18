@@ -1,12 +1,15 @@
 package com.diplomaproject.neristbuddy.adapter
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Environment
 import android.view.LayoutInflater
@@ -16,6 +19,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.diplomaproject.neristbuddy.R
@@ -117,6 +122,16 @@ class NotesRecyclerAdapter(var context: Context, var listOfNotes: ArrayList<Note
                     alertDialog.setMessage("Do you want to Download?")
                     alertDialog.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
 
+                        if (ContextCompat.checkSelfPermission(context,
+                                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(context as Activity,
+                                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                                    11)
+
+
+                        }
+
                         val loadingBar = ProgressDialog(context)
                         loadingBar.setMessage("Downloading..")
                         loadingBar.setCanceledOnTouchOutside(false)
@@ -134,13 +149,13 @@ class NotesRecyclerAdapter(var context: Context, var listOfNotes: ArrayList<Note
                                     "${humanReadableByteCountBin(it.bytesTransferred)}/${humanReadableByteCountBin(it.totalByteCount)}")
                         }
 
-                        down.addOnCompleteListener{
-                            if (it.isSuccessful){
+                        down.addOnCompleteListener {
+                            if (it.isSuccessful) {
                                 Toast.makeText(context, "${notesItem.pdfName} downloaded successfully", Toast.LENGTH_SHORT).show()
                                 loadingBar.dismiss()
                                 val intent = Intent(Intent.ACTION_VIEW)
-                                val pdfUri= FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider",file)
-                                intent.setDataAndType(Uri.parse(pdfUri.toString()),"application/pdf")
+                                val pdfUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", file)
+                                intent.setDataAndType(Uri.parse(pdfUri.toString()), "application/pdf")
                                 intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
                                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                 context.startActivity(intent)
@@ -178,7 +193,8 @@ class NotesRecyclerAdapter(var context: Context, var listOfNotes: ArrayList<Note
             i -= 10
         }
         value *= java.lang.Long.signum(bytes).toLong()
-        return java.lang.String.format("%.1f %ciB", value / 1024.0, ci.current())
+        return java.lang.String.format("%.1f %cB", value / 1024.0, ci.current())
     }
+
 
 }
