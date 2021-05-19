@@ -10,34 +10,38 @@
     android:scrollbars="vertical"
     android:clickable="true"
     android:theme="@style/Theme.AppCompat.Light"
+    android:focusable="true"
     tools:context=".activities.UploadNotesActivity">
 
     <RelativeLayout
+        android:id="@+id/rlUpload"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:isScrollContainer="true">
 
 
         <EditText
-            android:textColorHint="@color/black"
             android:id="@+id/etTopic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="40dp"
+            android:focusable="true"
             android:hint="Enter Topic name"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:textColorHint="@color/black" />
 
         <EditText
-            android:textColorHint="@color/black"
+            android:id="@+id/etNotes"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:layout_below="@+id/etTopic"
             android:layout_centerHorizontal="true"
-        android:id="@+id/etNotes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Enter notes details"
-        android:maxLines="1" />
+            android:layout_margin="10dp"
+            android:focusable="true"
+            android:hint="Enter notes details"
+            android:textColorHint="@color/black" />
 
         <ImageView
 
@@ -82,30 +86,30 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:padding="6dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/btn_style"
             android:id="@+id/btnImageSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/pdfView"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_style"
+            android:padding="6dp"
             android:text="Select Attachment"
             android:textAllCaps="false" />
 
         <Button
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/btn_style"
-            android:layout_below="@+id/btnImageSelect"
             android:id="@+id/btnUpload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/btnImageSelect"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center_horizontal"
             android:layout_margin="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_style"
             android:text="Upload"
             android:textAllCaps="false" />
     </RelativeLayout>

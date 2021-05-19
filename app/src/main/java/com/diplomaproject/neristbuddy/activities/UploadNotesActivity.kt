@@ -42,7 +42,7 @@ class UploadNotesActivity : AppCompatActivity() {
     lateinit var cardView: CardView
     lateinit var txtPdfName: TextView
     lateinit var scrollView: ScrollView
-
+    lateinit var rlUpload:RelativeLayout
     lateinit var imageName: String
     lateinit var pdfName: String
     var select: String? = null
@@ -63,12 +63,14 @@ class UploadNotesActivity : AppCompatActivity() {
         etNotesDetail = findViewById(R.id.etNotes)
         cardView = findViewById(R.id.pdfView)
         txtPdfName = findViewById(R.id.pdfName)
+        rlUpload=findViewById(R.id.rlUpload)
 
         btnUpload.visibility = View.VISIBLE
         val uid=FirebaseAuth.getInstance().uid.toString()
         val db = FirebaseDatabase.getInstance()
         val dbRef = db.reference
 
+        rlUpload.setOnClickListener { hideKeyBoard() }
         etTopicName.onFocusChangeListener = View.OnFocusChangeListener { p0, p1 -> hideKeyBoard() }
         etNotesDetail.onFocusChangeListener= View.OnFocusChangeListener { p0, p1 -> hideKeyBoard() }
 
@@ -83,6 +85,7 @@ class UploadNotesActivity : AppCompatActivity() {
 
 
         btnImageSelect.setOnClickListener {
+            hideKeyBoard()
 
 
             if (ContextCompat.checkSelfPermission(this,
@@ -101,6 +104,8 @@ class UploadNotesActivity : AppCompatActivity() {
 
         }
         btnUpload.setOnClickListener {
+            hideKeyBoard()
+
             if (isValidInput()) {
                 if (select == null) {
                     val loadingBar = ProgressDialog(this)
