@@ -1,14 +1,12 @@
 package com.diplomaproject.neristbuddy.activities
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import android.widget.SearchView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -80,7 +78,7 @@ class ViewNotesActivity : AppCompatActivity() {
                                         null,
                                         null,
                                         notesSnap.child("uploadedBy").value as String,
-
+                                        notesSnap.child("uid").value as String
                                 )
                                 notesList.add(notes)
                             }
@@ -93,6 +91,7 @@ class ViewNotesActivity : AppCompatActivity() {
                                         notesSnap.child("pdf").value as String,
                                         notesSnap.child("pdfName").value as String,
                                         notesSnap.child("uploadedBy").value as String,
+                                        notesSnap.child("uid").value as String
                                 )
                                 notesList.add(notes)
                             }
@@ -105,6 +104,7 @@ class ViewNotesActivity : AppCompatActivity() {
                                         null,
                                         null,
                                         notesSnap.child("uploadedBy").value as String,
+                                        notesSnap.child("uid").value as String
                                 )
                                 notesList.add(notes)
                             }
@@ -183,4 +183,12 @@ class ViewNotesActivity : AppCompatActivity() {
 
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == 11 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            notesRecyclerAdapter.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
+        else{
+            Toast.makeText(this, "Please allow to continue", Toast.LENGTH_SHORT).show()
+        }
+    }
 }

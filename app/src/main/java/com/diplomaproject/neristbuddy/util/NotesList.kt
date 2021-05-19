@@ -7,5 +7,6 @@ data class NotesList(
         val imageName:String?,
         val pdf: String?,
         val pdfName: String?,
-        val uploadedBy: String
+        val uploadedBy: String,
+        val uid:String
 )

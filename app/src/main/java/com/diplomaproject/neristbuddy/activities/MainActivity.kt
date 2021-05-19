@@ -57,14 +57,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         drawerLayout = findViewById(R.id.dlMain)
         toolbar = findViewById(R.id.toolbar)
-        if (ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    10)
 
-        }
         val sharedPreferences=getSharedPreferences(R.string.saved_preferences.toString(),
             MODE_PRIVATE)
 

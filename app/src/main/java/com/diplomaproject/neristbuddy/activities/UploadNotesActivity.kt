@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.diplomaproject.neristbuddy.R
 import com.diplomaproject.neristbuddy.util.NotesList
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
@@ -64,8 +65,9 @@ class UploadNotesActivity : AppCompatActivity() {
         txtPdfName = findViewById(R.id.pdfName)
 
         btnUpload.visibility = View.VISIBLE
-        var db = FirebaseDatabase.getInstance()
-        var dbRef = db.reference
+        val uid=FirebaseAuth.getInstance().uid.toString()
+        val db = FirebaseDatabase.getInstance()
+        val dbRef = db.reference
 
         etTopicName.onFocusChangeListener = View.OnFocusChangeListener { p0, p1 -> hideKeyBoard() }
         etNotesDetail.onFocusChangeListener= View.OnFocusChangeListener { p0, p1 -> hideKeyBoard() }
@@ -112,7 +114,8 @@ class UploadNotesActivity : AppCompatActivity() {
                             null,
                             null,
                             null,
-                            userName.toString()
+                            userName.toString(),
+                            uid
                     )
                     dbRef.child("Notes").child(year).child(branch).child(newNotes.name).setValue(
                             newNotes
@@ -142,7 +145,8 @@ class UploadNotesActivity : AppCompatActivity() {
                                     imageName,
                                     null,
                                     null,
-                                    userName.toString()
+                                    userName.toString(),
+                                    uid
                             )
                             dbRef.child("Notes").child(year).child(branch).child(newNotes.name).setValue(
                                     newNotes
@@ -179,7 +183,8 @@ class UploadNotesActivity : AppCompatActivity() {
                                     null,
                                     pdfUrl,
                                     pdfName,
-                                    userName.toString()
+                                    userName.toString(),
+                                    uid
                             )
                             dbRef.child("Notes").child(year).child(branch).child(newNotes.name).setValue(
                                     newNotes
@@ -248,6 +253,9 @@ class UploadNotesActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 100 && grantResults[0] == PERMISSION_GRANTED) {
             showDialog()
+        }
+        else{
+            Toast.makeText(this, "Please allow to continue", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -342,4 +350,5 @@ class UploadNotesActivity : AppCompatActivity() {
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
+
 }
