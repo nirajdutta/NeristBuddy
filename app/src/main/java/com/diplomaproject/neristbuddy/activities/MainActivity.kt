@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.diplomaproject.neristbuddy.R
+import com.diplomaproject.neristbuddy.fragments.ContactUsFragment
 import com.diplomaproject.neristbuddy.fragments.HomeFragment
 import com.diplomaproject.neristbuddy.fragments.ProfileFragment
 import com.google.android.material.navigation.NavigationView
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var imgProfile:CircleImageView
 
     val profileFragment=ProfileFragment()
+    val contactUsFragment=ContactUsFragment()
     var previousMenuItem: MenuItem? = null
     val auth = FirebaseAuth.getInstance()
     val user = auth.currentUser
@@ -150,6 +152,14 @@ class MainActivity : AppCompatActivity() {
                     val ft=supportFragmentManager.beginTransaction()
                     ft.replace(R.id.frameLayout,profileFragment)
                     supportActionBar?.title="Profile"
+                    ft.commit()
+                    drawerLayout.closeDrawers()
+                }
+                R.id.contact->{
+
+                    val ft=supportFragmentManager.beginTransaction()
+                    ft.replace(R.id.frameLayout,contactUsFragment)
+                    supportActionBar?.title="Developers Contact"
                     ft.commit()
                     drawerLayout.closeDrawers()
                 }
