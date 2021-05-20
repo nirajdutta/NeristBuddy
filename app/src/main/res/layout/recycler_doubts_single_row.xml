@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="2dp"
+    app:cardCornerRadius="2dp"
+    android:elevation="2dp"
+    android:id="@+id/doubtCard"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<!--        <view-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="2dp"/>-->
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/txtAskedBy"
+            android:text="John doe"
+            android:textSize="20sp"
+            android:layout_marginLeft="4dp"
+            android:padding="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/dateTime"
+            android:text="20 May 21 8:15 PM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtAskedBy"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"/>
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/txtSubject"
+            android:text="Computer Science"
+            android:textSize="18sp"
+            android:layout_marginLeft="6dp"
+            android:layout_below="@id/dateTime"
+            android:padding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:padding="4dp"
+            android:textSize="18sp"
+            android:text="Hey this is my doubt"
+            android:id="@+id/txtDoubt"
+            android:layout_below="@id/txtSubject"
+            android:layout_marginHorizontal="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

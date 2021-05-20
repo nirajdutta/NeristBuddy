@@ -12,7 +12,8 @@ import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.Toast
 import com.diplomaproject.neristbuddy.R
-import com.diplomaproject.neristbuddy.util.User
+import com.diplomaproject.neristbuddy.model.User
+import com.diplomaproject.neristbuddy.util.ConnectionManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -48,57 +49,63 @@ class RegistrationActivity : AppCompatActivity() {
                 loadingBar.setMessage("Please wait. Creating your account")
                 loadingBar.setCanceledOnTouchOutside(false)
                 loadingBar.show()
-                auth.createUserWithEmailAndPassword(etEmail.text.toString().trim(),etPassword.text.toString().trim()).addOnCompleteListener {
-                    if (it.isSuccessful){
-                        val user=auth.currentUser
-                        val uid= user?.uid.toString()
-                        val dbRef=FirebaseDatabase.getInstance().reference
-                        val newUser=User(etEmail.text.toString().trim(),etName.text.toString(),uid)
-                        dbRef.child("Users").child(uid).setValue(newUser).addOnCompleteListener {
-                            loadingBar.dismiss()
-                            Toast.makeText(this,"Registration Successful",Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this@RegistrationActivity,LoginActivity::class.java))
-                            finish()
-                        }
-                    }
-                    else{
-                        loadingBar.dismiss()
-//                        Toast.makeText(this, "Authentication Failed", Toast.LENGTH_SHORT).show()
-                        val msg=it.exception.toString()
-                        println("error:  $msg")
-                        if (msg.contains("badly formatted", true)){
-                            Toast.makeText(
-                                this,
-                                "Enter a correct email address",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                        else if (msg.contains("no user record", true)){
-                            Toast.makeText(
-                                this,
-                                "No user found on this email id",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                        else if (msg.contains("password is invalid", true)){
-                            Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT).show()
-                        }
-                        else if (msg.contains("We have blocked", true)){
-                            Toast.makeText(
-                                this, "Access to this account has been temporarily disabled " +
-                                        "due to many failed login attempts." +
-                                        " You can immediately restore it by resetting your " +
-                                        "password or you can try again later", Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                        else if (msg.contains("The email address is already in use by another account",true)){
-                            Toast.makeText(this, "The email address is already in use by another account", Toast.LENGTH_SHORT).show()
+                if (ConnectionManager().checkConnectivity(this)){
+                    auth.createUserWithEmailAndPassword(etEmail.text.toString().trim(),etPassword.text.toString().trim()).addOnCompleteListener {
+                        if (it.isSuccessful){
+                            val user=auth.currentUser
+                            val uid= user?.uid.toString()
+                            val dbRef=FirebaseDatabase.getInstance().reference
+                            val newUser= User(etEmail.text.toString().trim(),etName.text.toString(),uid)
+                            dbRef.child("Users").child(uid).setValue(newUser).addOnCompleteListener {
+                                loadingBar.dismiss()
+                                Toast.makeText(this,"Registration Successful",Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this@RegistrationActivity,LoginActivity::class.java))
+                                finish()
+                            }
                         }
                         else{
-                            Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                            loadingBar.dismiss()
+//                        Toast.makeText(this, "Authentication Failed", Toast.LENGTH_SHORT).show()
+                            val msg=it.exception.toString()
+                            println("error:  $msg")
+                            if (msg.contains("badly formatted", true)){
+                                Toast.makeText(
+                                    this,
+                                    "Enter a correct email address",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            else if (msg.contains("no user record", true)){
+                                Toast.makeText(
+                                    this,
+                                    "No user found on this email id",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            else if (msg.contains("password is invalid", true)){
+                                Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT).show()
+                            }
+                            else if (msg.contains("We have blocked", true)){
+                                Toast.makeText(
+                                    this, "Access to this account has been temporarily disabled " +
+                                            "due to many failed login attempts." +
+                                            " You can immediately restore it by resetting your " +
+                                            "password or you can try again later", Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            else if (msg.contains("The email address is already in use by another account",true)){
+                                Toast.makeText(this, "The email address is already in use by another account", Toast.LENGTH_SHORT).show()
+                            }
+                            else{
+                                Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
+                }else{
+                    loadingBar.dismiss()
+                    Toast.makeText(this,"No internet connection",Toast.LENGTH_SHORT).show()
                 }
+
             }
         }
 

@@ -19,7 +19,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.diplomaproject.neristbuddy.R
-import com.diplomaproject.neristbuddy.util.NotesList
+import com.diplomaproject.neristbuddy.model.NotesList
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage

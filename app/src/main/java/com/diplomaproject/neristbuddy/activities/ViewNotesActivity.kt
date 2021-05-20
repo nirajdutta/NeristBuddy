@@ -7,12 +7,14 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.diplomaproject.neristbuddy.R
 import com.diplomaproject.neristbuddy.adapter.NotesRecyclerAdapter
-import com.diplomaproject.neristbuddy.util.NotesList
+import com.diplomaproject.neristbuddy.model.NotesList
+import com.diplomaproject.neristbuddy.util.ConnectionManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -62,15 +64,15 @@ class ViewNotesActivity : AppCompatActivity() {
 
         linearLayoutManager = LinearLayoutManager(this)
 
-
-        dbRef.child("Notes").child(year.toString()).child(branch.toString())
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    notesList.clear()
-                    for (notesSnap: DataSnapshot in snapshot.children) {
-                        try {
-                            if (notesSnap.hasChild("image")){
-                                val notes = NotesList(
+        if (ConnectionManager().checkConnectivity(applicationContext)){
+            dbRef.child("Notes").child(year.toString()).child(branch.toString())
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        notesList.clear()
+                        for (notesSnap: DataSnapshot in snapshot.children) {
+                            try {
+                                if (notesSnap.hasChild("image")){
+                                    val notes = NotesList(
                                         notesSnap.child("name").value as String,
                                         notesSnap.child("notes").value as String,
                                         notesSnap.child("image").value as String,
@@ -79,11 +81,11 @@ class ViewNotesActivity : AppCompatActivity() {
                                         null,
                                         notesSnap.child("uploadedBy").value as String,
                                         notesSnap.child("uid").value as String
-                                )
-                                notesList.add(notes)
-                            }
-                            else if (notesSnap.hasChild("pdf")){
-                                val notes = NotesList(
+                                    )
+                                    notesList.add(notes)
+                                }
+                                else if (notesSnap.hasChild("pdf")){
+                                    val notes = NotesList(
                                         notesSnap.child("name").value as String,
                                         notesSnap.child("notes").value as String,
                                         null,
@@ -92,11 +94,11 @@ class ViewNotesActivity : AppCompatActivity() {
                                         notesSnap.child("pdfName").value as String,
                                         notesSnap.child("uploadedBy").value as String,
                                         notesSnap.child("uid").value as String
-                                )
-                                notesList.add(notes)
-                            }
-                            else{
-                                val notes = NotesList(
+                                    )
+                                    notesList.add(notes)
+                                }
+                                else{
+                                    val notes = NotesList(
                                         notesSnap.child("name").value as String,
                                         notesSnap.child("notes").value as String,
                                         null,
@@ -105,31 +107,38 @@ class ViewNotesActivity : AppCompatActivity() {
                                         null,
                                         notesSnap.child("uploadedBy").value as String,
                                         notesSnap.child("uid").value as String
-                                )
-                                notesList.add(notes)
-                            }
+                                    )
+                                    notesList.add(notes)
+                                }
 
-                            notesRecyclerAdapter =
+                                notesRecyclerAdapter =
                                     NotesRecyclerAdapter(this@ViewNotesActivity, notesList,year,branch)
-                            recyclerView.layoutManager = linearLayoutManager
-                            notesRecyclerAdapter.notifyDataSetChanged()
-                            recyclerView.adapter = notesRecyclerAdapter
-                        } catch (e: NullPointerException) {
-                            println("exception-----> ${e.message}")
+                                recyclerView.layoutManager = linearLayoutManager
+                                notesRecyclerAdapter.notifyDataSetChanged()
+                                recyclerView.adapter = notesRecyclerAdapter
+                            } catch (e: NullPointerException) {
+                                println("exception-----> ${e.message}")
+                            }
+                        }
+                        rlProgress.visibility = View.GONE
+                        progressBar.visibility = View.GONE
+                        if (notesList.size == 0) {
+                            txtNoNotes.visibility = View.VISIBLE
                         }
                     }
-                    rlProgress.visibility = View.GONE
-                    progressBar.visibility = View.GONE
-                    if (notesList.size == 0) {
-                        txtNoNotes.visibility = View.VISIBLE
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
                     }
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
+                })
 
-            })
+        }
+        else{
+            rlProgress.visibility=View.GONE
+            progressBar.visibility=View.GONE
+            Toast.makeText(this,"No internet connection",Toast.LENGTH_SHORT).show()
+        }
 
         fab.setOnClickListener {
             val intent=Intent(this,UploadNotesActivity::class.java)
@@ -163,8 +172,16 @@ class ViewNotesActivity : AppCompatActivity() {
     }
     fun filterFun(strTyped:String){
         val filteredList= arrayListOf<NotesList>()
-        for (item in notesList){
-            if (item.name.toLowerCase(Locale.ROOT).contains(strTyped.toLowerCase(Locale.ROOT))){
+        for (item in notesList) {
+            if (item.name.toLowerCase(Locale.ROOT).contains(strTyped.toLowerCase(Locale.ROOT))) {
+                filteredList.add(item)
+            }
+            if (item.pdfName?.toLowerCase(Locale.ROOT)
+                    ?.contains(strTyped.toLowerCase(Locale.ROOT)) == true
+            ) {
+                filteredList.add(item)
+            }
+            if (item.notes.toLowerCase(Locale.ROOT).contains(strTyped.toLowerCase(Locale.ROOT))) {
                 filteredList.add(item)
             }
         }

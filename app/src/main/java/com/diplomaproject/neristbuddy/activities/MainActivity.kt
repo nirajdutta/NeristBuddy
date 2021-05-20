@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userName=snapshot.child("name").value.toString()
 
-                println(userName)
+//                println(userName)
                 sharedPreferences.edit().putString("userName",userName).commit()
                 sharedPreferences.edit().putString("email",snapshot.child("email").value.toString()).apply()
                 if (snapshot.hasChild("image")){
@@ -94,20 +94,14 @@ class MainActivity : AppCompatActivity() {
 
         })
         txtUsername.text=sharedPreferences.getString("userName","username")
-//        val firebaseStorage=FirebaseStorage.getInstance().reference.child("profile").child("$uid.jpg")
-//
-//        val rootPath= File(Environment.getExternalStorageDirectory(),"test")
-//        if (!rootPath.exists()){
-//            rootPath.mkdirs()
-//        }
-//        val file=File(rootPath,"$uid.jpg")
-//        firebaseStorage.getFile(file).addOnSuccessListener {
-//            Toast.makeText(this,"downloaded",Toast.LENGTH_SHORT).show()
-//            println(it.totalByteCount)
-//        }
 
-
-
+        imgProfile.setOnClickListener {
+            val ft=supportFragmentManager.beginTransaction()
+            ft.replace(R.id.frameLayout,profileFragment)
+            supportActionBar?.title="Profile"
+            ft.commit()
+            drawerLayout.closeDrawers()
+        }
 
         navigationView.setNavigationItemSelectedListener {
             if (previousMenuItem != null) {

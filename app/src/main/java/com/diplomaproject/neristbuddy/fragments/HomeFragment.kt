@@ -10,6 +10,7 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import com.diplomaproject.neristbuddy.R
+import com.diplomaproject.neristbuddy.activities.DoubtsActivity
 import com.diplomaproject.neristbuddy.activities.NotesActivity
 import com.diplomaproject.neristbuddy.activities.cca_activity
 import com.diplomaproject.neristbuddy.activities.tnpactivity
@@ -48,9 +49,11 @@ class HomeFragment : Fragment() {
         btnEvents=view.findViewById(R.id.btnEvents)
         btnCCA=view.findViewById(R.id.btnCCA)
 
-
         btnNotes.setOnClickListener {
             startActivity(Intent(activity,NotesActivity::class.java))
+        }
+        btnDoubts.setOnClickListener {
+            startActivity(Intent(activity,DoubtsActivity::class.java))
         }
         btnTnp.setOnClickListener {
             startActivity(Intent(activity, tnpactivity::class.java))

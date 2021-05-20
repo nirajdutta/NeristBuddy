@@ -1,4 +1,4 @@
-package com.diplomaproject.neristbuddy.util
+package com.diplomaproject.neristbuddy.model
 
 data class NotesList(
         val name: String,
