@@ -20,6 +20,7 @@ public class cca_activity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cca_activity);
+        setTitle("Co-curricular Activities");
         shri=findViewById(R.id.shristi);
         rac=findViewById(R.id.racaf);
         syn=findViewById(R.id.synergy);

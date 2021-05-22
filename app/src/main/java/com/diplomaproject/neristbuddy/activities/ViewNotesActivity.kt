@@ -163,6 +163,7 @@ class ViewNotesActivity : AppCompatActivity() {
                 if (newText != null) {
                     filterFun(newText)
                 }
+
                 return true
             }
         })
@@ -173,17 +174,11 @@ class ViewNotesActivity : AppCompatActivity() {
     fun filterFun(strTyped:String){
         val filteredList= arrayListOf<NotesList>()
         for (item in notesList) {
-            if (item.name.toLowerCase(Locale.ROOT).contains(strTyped.toLowerCase(Locale.ROOT))) {
+            if (item.name.toLowerCase(Locale.ROOT).contains(strTyped.toLowerCase(Locale.ROOT))||item.pdfName?.toLowerCase(Locale.ROOT)
+                    ?.contains(strTyped.toLowerCase(Locale.ROOT)) == true||item.notes.toLowerCase(Locale.ROOT).contains(strTyped.toLowerCase(Locale.ROOT))) {
                 filteredList.add(item)
             }
-            if (item.pdfName?.toLowerCase(Locale.ROOT)
-                    ?.contains(strTyped.toLowerCase(Locale.ROOT)) == true
-            ) {
-                filteredList.add(item)
-            }
-            if (item.notes.toLowerCase(Locale.ROOT).contains(strTyped.toLowerCase(Locale.ROOT))) {
-                filteredList.add(item)
-            }
+
         }
         if (filteredList.size==0){
             cantFind.visibility=View.VISIBLE

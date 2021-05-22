@@ -12,9 +12,9 @@
     <item
         android:id="@+id/contact"
         android:title="Contact us"/>
-    <item
-        android:id="@+id/settings"
-        android:title="Settings"/>
+<!--    <item-->
+<!--        android:id="@+id/settings"-->
+<!--        android:title="Settings"/>-->
     <item
         android:id="@+id/logout"
         android:title="Log out"

@@ -59,6 +59,7 @@ class RegistrationActivity : AppCompatActivity() {
                             dbRef.child("Users").child(uid).setValue(newUser).addOnCompleteListener {
                                 loadingBar.dismiss()
                                 Toast.makeText(this,"Registration Successful",Toast.LENGTH_SHORT).show()
+                                auth.signOut()
                                 startActivity(Intent(this@RegistrationActivity,LoginActivity::class.java))
                                 finish()
                             }
@@ -114,13 +115,18 @@ class RegistrationActivity : AppCompatActivity() {
     private fun isValidInput(): Boolean {
         val email:String= etEmail.text.toString()
         val password:String= etPassword.text.toString()
+        val name:String=etName.text.toString()
         var valid = true
         if (TextUtils.isEmpty(email.trim())) {
             etEmail.error = "Required"
             valid = false
         }
-        if (!TextUtils.isEmpty(email.trim())&&!email.trim().contains("@")){
+        if (!TextUtils.isEmpty(email.trim())&&!email.trim().contains("@")&&!email.trim().contains(".com")){
             etEmail.error = "Invalid email"
+            valid = false
+        }
+        if (TextUtils.isEmpty(name.trim())) {
+            etName.error = "Required"
             valid = false
         }
         if (TextUtils.isEmpty(password.trim())) {

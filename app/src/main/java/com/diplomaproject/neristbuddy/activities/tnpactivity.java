@@ -18,6 +18,8 @@ public class tnpactivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tnp);
+        setTitle("Nerist T&P Cell");
+
         link=findViewById(R.id.tnpcontact);
         link.setOnClickListener(new View.OnClickListener() {
             @Override

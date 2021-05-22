@@ -47,8 +47,19 @@ class DoubtsActivity : AppCompatActivity() {
         val uid=FirebaseAuth.getInstance().uid.toString()
         val dbRef=FirebaseDatabase.getInstance().reference
         val sharedPreferences=getSharedPreferences(R.string.saved_preferences.toString(), MODE_PRIVATE)
-        val username=sharedPreferences.getString("userName",uid)
+        var username=sharedPreferences.getString("userName",uid)
 
+        if (username==uid){
+            dbRef.child("Users").child(uid).child("name").addValueEventListener(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    username=snapshot.value.toString()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+        }
 //        rlProgress.visibility = View.GONE
         linearLayoutManager= LinearLayoutManager(this)
 
@@ -98,10 +109,11 @@ class DoubtsActivity : AppCompatActivity() {
             linearLayout.orientation = LinearLayout.VERTICAL
             val et1 = EditText(this)
             et1.hint = "Please enter the subject name"
+            et1.inputType=InputType.TYPE_TEXT_FLAG_CAP_WORDS
             linearLayout.addView(et1)
             val et2 = EditText(this)
             et2.hint = "Please enter your doubt"
-            et2.inputType=InputType.TYPE_TEXT_FLAG_MULTI_LINE
+            et2.inputType=InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
             et2.isSingleLine=false
             linearLayout.addView(et2)
             alertDialog.setView(linearLayout)
@@ -134,6 +146,7 @@ class DoubtsActivity : AppCompatActivity() {
                             }
                         }
                         else{
+
                             Toast.makeText(this, "Do not leave the fields empty", Toast.LENGTH_SHORT).show()
                         }
 

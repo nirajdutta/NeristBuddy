@@ -116,7 +116,7 @@ class ProfileFragment : Fragment() {
                             Toast.makeText(activity as Context, "Profile picture removed Successfully", Toast.LENGTH_SHORT).show()
                             Picasso.get().load(R.drawable.user).into(imgProfile)
                             dbRef.child("Users").child(uid).child("image").removeValue()
-                            sharedPreferences?.edit()?.remove("image")?.apply()
+                            sharedPreferences?.edit()?.remove("image")?.commit()
                             loading.dismiss()
                         }
                         else{
@@ -147,7 +147,7 @@ class ProfileFragment : Fragment() {
 
                     dbRef.child("Users").child(uid).child("image").setValue(imgUrl).addOnCompleteListener {
                         Toast.makeText(activity as Context, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
-                        sharedPreferences?.edit()?.putString("image",imgUrl)?.apply()
+                        sharedPreferences?.edit()?.putString("image",imgUrl)?.commit()
                         btnUpload.visibility=View.GONE
                         btnCancel.visibility=View.GONE
                         loading.dismiss()
@@ -174,9 +174,11 @@ class ProfileFragment : Fragment() {
 
         edit.setOnClickListener {
             val alertDialog=AlertDialog.Builder(activity as Context)
+            alertDialog.setTitle("Update your name")
             alertDialog.setMessage("Enter your new username")
             val input=EditText(context)
-            input.inputType=InputType.TYPE_CLASS_TEXT
+            input.inputType=InputType.TYPE_TEXT_FLAG_CAP_WORDS
+            input.setText(userName)
             alertDialog.setView(input)
             alertDialog.setPositiveButton("Update",DialogInterface.OnClickListener{dialogInterface, i ->
                 val loadingBar=ProgressDialog(context)
@@ -185,6 +187,7 @@ class ProfileFragment : Fragment() {
                 loadingBar.show()
                 dbRef.child("Users").child(uid).child("name").setValue(input.text.toString()).addOnSuccessListener {
                     txtName.text=input.text.toString()
+                    sharedPreferences?.edit()?.putString("userName",input.text.toString())?.commit()
                     loadingBar.dismiss()
                 }
             })
@@ -198,6 +201,7 @@ class ProfileFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GalleryPickRequest && resultCode == AppCompatActivity.RESULT_OK) {
+
             val selectImageUri: Uri? = data?.data
             if (selectImageUri != null) {
                 imageUri = selectImageUri

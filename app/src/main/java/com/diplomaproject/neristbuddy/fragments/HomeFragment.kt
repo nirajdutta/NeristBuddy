@@ -10,10 +10,7 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import com.diplomaproject.neristbuddy.R
-import com.diplomaproject.neristbuddy.activities.DoubtsActivity
-import com.diplomaproject.neristbuddy.activities.NotesActivity
-import com.diplomaproject.neristbuddy.activities.cca_activity
-import com.diplomaproject.neristbuddy.activities.tnpactivity
+import com.diplomaproject.neristbuddy.activities.*
 
 class HomeFragment : Fragment() {
 
@@ -36,16 +33,11 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
 
-//        recyclerHome = view.findViewById(R.id.recyclerHome)
-//        progressLayout = view.findViewById(R.id.progressLayout)
-//        progressBar = view.findViewById(R.id.progressBar)
-//        progressLayout.visibility = View.GONE
-
 
         btnNotes=view.findViewById(R.id.btnNotes)
         btnDoubts=view.findViewById(R.id.btnDoubts)
         btnTnp=view.findViewById(R.id.btnTnP)
-        btnLost=view.findViewById(R.id.btnLost)
+//        btnLost=view.findViewById(R.id.btnLost)
         btnEvents=view.findViewById(R.id.btnEvents)
         btnCCA=view.findViewById(R.id.btnCCA)
 
@@ -54,6 +46,9 @@ class HomeFragment : Fragment() {
         }
         btnDoubts.setOnClickListener {
             startActivity(Intent(activity,DoubtsActivity::class.java))
+        }
+        btnEvents.setOnClickListener {
+            startActivity(Intent(activity, EventsActivity::class.java))
         }
         btnTnp.setOnClickListener {
             startActivity(Intent(activity, tnpactivity::class.java))

@@ -9,8 +9,8 @@
     android:theme="@style/Theme.AppCompat.Light">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_above="@id/ll"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
@@ -57,7 +57,6 @@
             android:background="@drawable/et_style"
             android:hint="Set your password"
             android:inputType="textPassword"
-            android:maxLength="8"
             android:maxLines="1"
             android:padding="8dp" />
 

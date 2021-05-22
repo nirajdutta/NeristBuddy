@@ -54,15 +54,15 @@
                 android:elevation="5dp"
                 android:text="T &amp; P" />
 
-            <Button
-                android:textColor="@color/black"
-                android:id="@+id/btnLost"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/btn_style"
-                android:elevation="5dp"
-                android:text="Lost and Found" />
+<!--            <Button-->
+<!--                android:textColor="@color/black"-->
+<!--                android:id="@+id/btnLost"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="@drawable/btn_style"-->
+<!--                android:elevation="5dp"-->
+<!--                android:text="Lost and Found" />-->
 
             <Button
                 android:textColor="@color/black"

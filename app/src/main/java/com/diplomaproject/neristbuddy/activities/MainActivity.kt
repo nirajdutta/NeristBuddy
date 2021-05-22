@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         ref.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 userName=snapshot.child("name").value.toString()
-
+                txtUsername.text=userName
 //                println(userName)
                 sharedPreferences.edit().putString("userName",userName).commit()
                 sharedPreferences.edit().putString("email",snapshot.child("email").value.toString()).apply()
@@ -93,7 +93,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        txtUsername.text=sharedPreferences.getString("userName","username")
+
+
 
         imgProfile.setOnClickListener {
             val ft=supportFragmentManager.beginTransaction()
@@ -162,6 +163,37 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        var userName:String
+        val sharedPreferences=getSharedPreferences(R.string.saved_preferences.toString(),
+            MODE_PRIVATE
+        )
+        val uid=FirebaseAuth.getInstance().uid.toString()
+        val ref=db.reference.child("Users").child(uid)
+        ref.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                userName=snapshot.child("name").value.toString()
+                txtUsername.text=userName
+//                println(userName)
+                sharedPreferences.edit().putString("userName",userName).commit()
+                sharedPreferences.edit().putString("email",snapshot.child("email").value.toString()).apply()
+                if (snapshot.hasChild("image")){
+                    sharedPreferences.edit().putString("image",snapshot.child("image").value.toString()).apply()
+                    Picasso.get().load(snapshot.child("image").value.toString()).placeholder(R.drawable.user).error(R.drawable.user).into(imgProfile)
+                }else{
+                    Picasso.get().load(R.drawable.user).into(imgProfile)
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("dbError", error.message)
+            }
+
+        })
+    }
+
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
         supportActionBar?.title = "My Nerist Buddy"
@@ -184,7 +216,7 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, fragment)
         transaction.commit()
-        supportActionBar?.title = "My Nerist Buddy"
+        supportActionBar?.title = "Dashboard"
         navigationView.setCheckedItem(R.id.homepage)
         drawerLayout.closeDrawers()
     }
