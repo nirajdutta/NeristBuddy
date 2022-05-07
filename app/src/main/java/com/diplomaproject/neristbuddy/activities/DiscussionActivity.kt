@@ -6,16 +6,13 @@ import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
 import android.provider.OpenableColumns
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -213,8 +210,7 @@ class DiscussionActivity : AppCompatActivity() {
                         inputMessage.setText("")
                     }
 
-
-
+                select=null
             }
             if (select=="image"){
                 val sdf= SimpleDateFormat("dd/MM hh:mm aa")
@@ -243,6 +239,7 @@ class DiscussionActivity : AppCompatActivity() {
                             imgAttached.visibility=View.GONE
                             messageRecyclerAdapter.notifyDataSetChanged()
 //                                llsend.visibility=View.GONE
+                            select=null
                             loadingBar.dismiss()
                         }
                     }

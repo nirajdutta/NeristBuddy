@@ -28,12 +28,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-//        val sharedPreferences=getSharedPreferences(getString(R.string.saved_preferences), MODE_PRIVATE)
-//        if (sharedPreferences.getBoolean("isLoggedIn",false)){
-//            val intent=Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
+
         llLogin=findViewById(R.id.llLogin)
         btnlogin = findViewById(R.id.btnLogin)
         etId = findViewById(R.id.etId)

@@ -35,7 +35,7 @@
         android:layout_below="@id/imgLogo"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:bufferType="spannable"
@@ -95,22 +95,6 @@
             android:padding="10dp"
             android:layout_below="@+id/etId" />
     </com.google.android.material.textfield.TextInputLayout>
-    <!--    <EditText-->
-    <!--        -->
-    <!--        android:textColorHint="@color/black"-->
-    <!--        android:id="@+id/etPassword"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="50dp"-->
-    <!--        android:layout_below="@+id/etId"-->
-    <!--        android:layout_centerHorizontal="true"-->
-    <!--        android:layout_marginHorizontal="30dp"-->
-    <!--        android:background="@drawable/et_style"-->
-    <!--        android:backgroundTint="@color/white"-->
-    <!--        android:hint="Password"-->
-    <!--        android:inputType="textPassword"-->
-    <!--        android:textAlignment="center"-->
-    <!--        android:textColor="#000"-->
-    <!--        tools:targetApi="lollipop" />-->
 
     <Button
         android:id="@+id/btnLogin"
